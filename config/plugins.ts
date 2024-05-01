@@ -6,7 +6,7 @@ export default () => ({
       commonInterfacesFolderName: "schemas-to-ts",
       alwaysAddEnumSuffix: false,
       alwaysAddComponentSuffix: false,
-      usePrettierIfAvailable: true,
+      usePrettierIfAvailable: false,
       logLevel: 2,
       destinationFolder: "./types/schemas-to-ts",
     },
