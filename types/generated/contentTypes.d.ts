@@ -362,37 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiBlogPageBlogPage extends Schema.CollectionType {
-  collectionName: "blog_pages";
-  info: {
-    singularName: "blog-page";
-    pluralName: "blog-pages";
-    displayName: "Blog Page";
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String & Attribute.Required & Attribute.Unique;
-    Introduction: Attribute.RichText;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      "api::blog-page.blog-page",
-      "oneToOne",
-      "admin::user"
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      "api::blog-page.blog-page",
-      "oneToOne",
-      "admin::user"
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: "files";
   info: {
@@ -819,6 +788,269 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiBlogBlog extends Schema.SingleType {
+  collectionName: "blogs";
+  info: {
+    singularName: "blog";
+    pluralName: "blogs";
+    displayName: "Blog";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Title: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<"api::blog.blog", "oneToOne", "admin::user"> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<"api::blog.blog", "oneToOne", "admin::user"> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      "api::blog.blog",
+      "oneToMany",
+      "api::blog.blog"
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiBlogPageBlogPage extends Schema.CollectionType {
+  collectionName: "blog_pages";
+  info: {
+    singularName: "blog-page";
+    pluralName: "blog-pages";
+    displayName: "Blog Page";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String & Attribute.Required & Attribute.Unique;
+    Introduction: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      "api::blog-page.blog-page",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      "api::blog-page.blog-page",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHomeCareHomeCare extends Schema.SingleType {
+  collectionName: "home_cares";
+  info: {
+    singularName: "home-care";
+    pluralName: "home-cares";
+    displayName: "HomeCare";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Title: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      "api::home-care.home-care",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      "api::home-care.home-care",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      "api::home-care.home-care",
+      "oneToMany",
+      "api::home-care.home-care"
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiProjectProject extends Schema.CollectionType {
+  collectionName: "projects";
+  info: {
+    singularName: "project";
+    pluralName: "projects";
+    displayName: "Project";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Title: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      "api::project.project",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      "api::project.project",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      "api::project.project",
+      "oneToMany",
+      "api::project.project"
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiRenovationRenovation extends Schema.SingleType {
+  collectionName: "renovations";
+  info: {
+    singularName: "renovation";
+    pluralName: "renovations";
+    displayName: "Renovation";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Title: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      "api::renovation.renovation",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      "api::renovation.renovation",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      "api::renovation.renovation",
+      "oneToMany",
+      "api::renovation.renovation"
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: "reviews";
+  info: {
+    singularName: "review";
+    pluralName: "reviews";
+    displayName: "Review";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Title: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      "api::review.review",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      "api::review.review",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      "api::review.review",
+      "oneToMany",
+      "api::review.review"
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module "@strapi/types" {
   export module Shared {
     export interface ContentTypes {
@@ -829,7 +1061,6 @@ declare module "@strapi/types" {
       "admin::api-token-permission": AdminApiTokenPermission;
       "admin::transfer-token": AdminTransferToken;
       "admin::transfer-token-permission": AdminTransferTokenPermission;
-      "api::blog-page.blog-page": ApiBlogPageBlogPage;
       "plugin::upload.file": PluginUploadFile;
       "plugin::upload.folder": PluginUploadFolder;
       "plugin::content-releases.release": PluginContentReleasesRelease;
@@ -838,6 +1069,12 @@ declare module "@strapi/types" {
       "plugin::users-permissions.permission": PluginUsersPermissionsPermission;
       "plugin::users-permissions.role": PluginUsersPermissionsRole;
       "plugin::users-permissions.user": PluginUsersPermissionsUser;
+      "api::blog.blog": ApiBlogBlog;
+      "api::blog-page.blog-page": ApiBlogPageBlogPage;
+      "api::home-care.home-care": ApiHomeCareHomeCare;
+      "api::project.project": ApiProjectProject;
+      "api::renovation.renovation": ApiRenovationRenovation;
+      "api::review.review": ApiReviewReview;
     }
   }
 }

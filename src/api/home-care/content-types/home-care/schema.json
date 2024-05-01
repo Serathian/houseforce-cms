@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_cares",
+  "info": {
+    "singularName": "home-care",
+    "pluralName": "home-cares",
+    "displayName": "HomeCare"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "unique": true,
+      "required": true
+    }
+  }
+}
