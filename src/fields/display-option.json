@@ -1,0 +1,6 @@
+{
+  "type": "enumeration",
+  "enum": ["Full", "Narrow", "Half", "One Third", "Two Thirds"],
+  "default": "Full",
+  "required": true
+}

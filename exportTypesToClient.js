@@ -3,7 +3,7 @@ const path = require("path");
 
 function copySchemaToTSFiles() {
   // Define the source directory
-  const sourceDir = path.join(process.cwd(), "types", "schemas-to-ts");
+  const sourceDir = path.join(process.cwd(), "types", "generated");
 
   // Define the destination directory
   const destinationDir = path.join(
@@ -11,7 +11,8 @@ function copySchemaToTSFiles() {
     "..",
     "houseforce-retail-client",
     "src",
-    "cmstypes",
+    "lib",
+    "types",
   );
   console.log(destinationDir);
   try {

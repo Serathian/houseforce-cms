@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_blocks_image_blocks",
+  "info": {
+    "displayName": "Image Block",
+    "icon": "expand",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Media": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "DisplayOption": {
+      "type": "enumeration",
+      "enum": ["Full", "Narrow", "Half", "One Third", "Two Thirds"],
+      "default": "Full",
+      "required": true
+    },
+    "Style": {
+      "type": "enumeration",
+      "enum": ["Square", "Rounded", "Circle"],
+      "required": true,
+      "default": "Square"
+    }
+  }
+}

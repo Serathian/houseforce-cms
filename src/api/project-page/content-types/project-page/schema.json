@@ -1,10 +1,10 @@
 {
-  "kind": "singleType",
-  "collectionName": "projects",
+  "kind": "collectionType",
+  "collectionName": "project_pages",
   "info": {
-    "singularName": "project",
-    "pluralName": "projects",
-    "displayName": "Project"
+    "singularName": "project-page",
+    "pluralName": "project-pages",
+    "displayName": "Project Page"
   },
   "options": {
     "draftAndPublish": true

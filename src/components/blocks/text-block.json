@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blocks_text_blocks",
+  "info": {
+    "displayName": "Text Block",
+    "icon": "filter",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Text": {
+      "type": "blocks",
+      "required": true
+    },
+    "DisplayOption": {
+      "type": "enumeration",
+      "enum": ["Full", "Narrow", "Half", "One Third", "Two Thirds"],
+      "default": "Full",
+      "required": true
+    }
+  }
+}

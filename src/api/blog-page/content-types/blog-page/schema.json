@@ -4,7 +4,8 @@
   "info": {
     "singularName": "blog-page",
     "pluralName": "blog-pages",
-    "displayName": "Blog Page"
+    "displayName": "Blog Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,6 +19,12 @@
     },
     "Introduction": {
       "type": "richtext"
+    },
+    "ContentArea": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.text-block"
+      ]
     }
   }
 }
