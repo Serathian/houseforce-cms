@@ -8,6 +8,7 @@
 	import type { StrapiImage } from '@/types/types';
 
 	export let data: RichTextBlocks[];
+	export let cssClass: string;
 
 	const renderList = (block: RichTextBlocks) => {
 		let html = '';
@@ -49,7 +50,7 @@
 	};
 </script>
 
-<div class="prose prose-slate prose-a:text-blue-600">
+<div class={cssClass + ' prose prose-slate prose-a:text-secondary my-auto max-w-none'}>
 	{#each data as block}
 		<!-- Paragraph -->
 		{#if block && block.type === RichTextBlockType.paragraph}

@@ -1,14 +1,17 @@
 <script lang="ts">
+	import ContentArea from '@/components/content-area/contentArea.svelte';
+	import type { APIResponse } from '@/types/strapi';
 	import { Domain } from '@/types/types.js';
 	import { updateCurrentTheme } from '@/utils/domainHelper';
 
 	// Props
-	export let data;
+	export let data: APIResponse<'api::renovation.renovation'>;
 
 	// Page Data
 	let pageData = data.data;
+	let contentArea = pageData.attributes.ContentArea;
 
 	updateCurrentTheme(Domain.Renovation, pageData.attributes.Title);
 </script>
 
-<h1 class="full">This will be the Renovation home page</h1>
+<ContentArea data={contentArea} />
