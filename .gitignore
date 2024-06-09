@@ -115,6 +115,7 @@ dist
 build
 .strapi-updater.json
 schemas-to-ts
+uploads
 
 /build
 .svelte-kit
