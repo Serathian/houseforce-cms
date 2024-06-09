@@ -130,20 +130,20 @@
 		</Sheet.Root>
 
 		<!-- search -->
-		<div id="search" class="">
+		<div id="search">
 			<Popover.Root>
 				<Popover.Trigger asChild let:builder>
 					<Button builders={[builder]} variant="outline" size="icon" class="text-primary">
 						<Search class="h-5 w-5" />
 					</Button>
 				</Popover.Trigger>
-				<Popover.Content class="bg-muted w-full -translate-x-2" sideOffset={-40}>
-					<div class="relative">
+				<Popover.Content class="bg-muted -translate-x-2" sideOffset={-40}>
+					<div class="relative w-full">
 						<Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
 						<Input
 							type="search"
 							placeholder="Search..."
-							class="bg-background focus-visible:ring-primary w-full rounded-lg pl-8 md:w-[200px] lg:w-[320px]"
+							class="bg-background focus-visible:ring-primary w-full rounded-lg pl-8"
 						/>
 					</div>
 				</Popover.Content>

@@ -20,8 +20,9 @@
 <svelte:window bind:scrollY={y} />
 
 <nav
-	class="fixed top-0 hidden w-full bg-opacity-45 transition-all lg:block"
-	class:bg-muted-foreground={y > 60}
+	class="fixed top-0 hidden w-full transition-all lg:block"
+	class:bg-muted={y > 60}
+	class:shadow-lg={y > 60}
 >
 	<nav class="container sticky top-0 flex h-16 w-full items-center justify-between">
 		<!-- Navigation -->
