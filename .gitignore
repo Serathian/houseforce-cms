@@ -117,7 +117,7 @@ build
 schemas-to-ts
 
 /build
-/.svelte-kit
+.svelte-kit
 /package
 
 vite.config.js.timestamp-*
