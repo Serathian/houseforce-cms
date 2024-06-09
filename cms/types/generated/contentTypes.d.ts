@@ -1165,6 +1165,7 @@ export interface ApiRenovationRenovation extends Schema.SingleType {
     singularName: "renovation";
     pluralName: "renovations";
     displayName: "Renovation";
+    description: "";
   };
   options: {
     draftAndPublish: true;
@@ -1178,6 +1179,14 @@ export interface ApiRenovationRenovation extends Schema.SingleType {
     Title: Attribute.String &
       Attribute.Required &
       Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ContentArea: Attribute.DynamicZone<
+      ["blocks.image-block", "blocks.text-block"]
+    > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
