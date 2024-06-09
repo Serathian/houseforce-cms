@@ -9,7 +9,7 @@ function copySchemaToTSFiles() {
   const destinationDir = path.join(
     process.cwd(),
     "..",
-    "houseforce-retail-client",
+    "client",
     "src",
     "lib",
     "types",
