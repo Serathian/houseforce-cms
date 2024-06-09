@@ -1,4 +1,5 @@
 export interface DomainConstants {
+	domain: Domains;
 	dataTheme: string;
 	domainName: string;
 	homeUrl: string;
@@ -10,24 +11,27 @@ export interface CollectionDomain extends DomainConstants {
 	collectionFindOneEndpoint: string;
 }
 
-export type Domains =
-	| 'not-set'
-	| 'renovation'
-	| 'homecare'
-	| 'about-us'
-	| 'atricles'
-	| 'blogs'
-	| 'projects';
+export enum Domains {
+	NotSet = 'not-set',
+	Renovation = 'renovation',
+	Homecare = 'homecare',
+	AboutUs = 'about-us',
+	Articles = 'articles',
+	Blogs = 'blogs',
+	Projects = 'projects'
+}
 
 const fallbackDomain: DomainConstants = {
-	dataTheme: 'not-set',
-	domainName: 'not-set',
+	domain: Domains.NotSet,
+	dataTheme: 'other',
+	domainName: 'other',
 	homeUrl: '/',
 	cmsEndpoint: '/'
 };
 
 // Single Types
 const renovation: DomainConstants = {
+	domain: Domains.Renovation,
 	dataTheme: 'renovation',
 	domainName: 'Renovation',
 	homeUrl: '/renovation',
@@ -35,6 +39,7 @@ const renovation: DomainConstants = {
 };
 
 const homecare: DomainConstants = {
+	domain: Domains.Homecare,
 	dataTheme: 'homecare',
 	domainName: 'Homecare',
 	homeUrl: '/homecare',
@@ -42,6 +47,7 @@ const homecare: DomainConstants = {
 };
 
 const aboutus: DomainConstants = {
+	domain: Domains.AboutUs,
 	dataTheme: 'other',
 	domainName: 'Excellence is a way of life',
 	homeUrl: '/about-us',
@@ -50,6 +56,7 @@ const aboutus: DomainConstants = {
 
 // Collection Types
 const articles: CollectionDomain = {
+	domain: Domains.Articles,
 	dataTheme: 'other',
 	domainName: 'Excellence is a way of life',
 	homeUrl: '/articles',
@@ -59,6 +66,7 @@ const articles: CollectionDomain = {
 };
 
 const blogs: CollectionDomain = {
+	domain: Domains.Blogs,
 	dataTheme: 'other',
 	domainName: 'Excellence is a way of life',
 	homeUrl: '/blogs',
@@ -68,6 +76,7 @@ const blogs: CollectionDomain = {
 };
 
 const projects: CollectionDomain = {
+	domain: Domains.Projects,
 	dataTheme: 'other',
 	domainName: 'Excellence is a way of life',
 	homeUrl: '/projects',

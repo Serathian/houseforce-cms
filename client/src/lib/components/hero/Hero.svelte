@@ -1,12 +1,27 @@
 <script lang="ts">
 	import { currentTheme } from '@/stores';
+	import Brand from '../blocks/brand.svelte';
+	import { Domains } from '@/utils/constants';
 
 	let heroText: string;
+	let isHomecare: boolean;
+	let isRenovation: boolean;
 	currentTheme.subscribe((value) => {
 		heroText = value.heroText;
+		isHomecare = value.currentDomain.domain == Domains.Homecare;
+		isRenovation = value.currentDomain.domain == Domains.Renovation;
 	});
+
+	const activeElementCss = 'py-1 px-3 m-1 bg-white rounded-full shadow-md font-bold';
+	const inactiveElementCss = 'py-1 px-3 m-1 rounded-full font-bold';
 </script>
 
-<header class="flex h-80 flex-col items-center justify-center bg-secondary md:pt-36">
-	<h1 class="translate-y-8">{heroText}</h1>
+<header class="bg-muted flex h-[500px] flex-col items-center justify-center gap-3">
+	<Brand />
+	<div class="bg-secondary-foreground flex w-max gap-6 rounded-full">
+		<a href="/homecare" class={isHomecare ? activeElementCss : inactiveElementCss}> Homecare </a>
+		<a href="/renovation" class={isRenovation ? activeElementCss : inactiveElementCss}>
+			Renovation
+		</a>
+	</div>
 </header>

@@ -4,10 +4,7 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input';
 	import * as Popover from '$lib/components/ui/popover';
-	import { fade, fly } from 'svelte/transition';
-
-	// Blocks
-	import Brand from '$lib/components/blocks/brand.svelte';
+	import { fade } from 'svelte/transition';
 
 	// Icons
 	import Hammer from 'lucide-svelte/icons/hammer';
@@ -20,6 +17,7 @@
 	// Other
 	import type { DomainConstants } from '@/utils/constants';
 	import constants from '@/utils/constants';
+	import Brand from '@/components/blocks/brand.svelte';
 
 	// Props
 	export let otherDomain: DomainConstants;
@@ -31,7 +29,7 @@
 <svelte:window bind:scrollY={y} />
 
 <nav
-	class="fixed top-0 h-16 w-full bg-muted backdrop-filter transition-all md:hidden"
+	class="bg-muted fixed top-0 h-16 w-full backdrop-filter transition-all lg:hidden"
 	class:bg-muted={y < 60}
 >
 	<div
@@ -48,23 +46,23 @@
 			</Sheet.Trigger>
 			<Sheet.Content side="left" class="bg-muted">
 				<Sheet.Header class="gap-10">
-					<Sheet.Title class="text-2xl">
-						<span class="text-primary">House<span class="text-secondary">Force</span></span>
+					<Sheet.Title>
+						<Brand isMenu={true} />
 					</Sheet.Title>
 
 					<div class="relative">
-						<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+						<Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
 						<Input
 							type="search"
 							placeholder="Search..."
-							class="w-full rounded-lg bg-background pl-8 focus-visible:ring-primary md:w-[200px] lg:w-[320px]"
+							class="bg-background focus-visible:ring-primary w-full rounded-lg pl-8"
 						/>
 					</div>
 					<Sheet.Close asChild let:builder>
 						<Button
 							builders={[builder]}
 							variant="outline"
-							class="gap-3 border-primary text-primary"
+							class="border-primary text-primary gap-3"
 							href="/projects"
 						>
 							<span class="sr-only">Projects</span>
@@ -75,7 +73,7 @@
 						<Button
 							builders={[builder]}
 							variant="outline"
-							class="gap-3 border-primary text-primary"
+							class="border-primary text-primary gap-3"
 							href="/articles"
 						>
 							<span class="sr-only">Articles</span>
@@ -86,7 +84,7 @@
 						<Button
 							builders={[builder]}
 							variant="outline"
-							class="gap-3 border-primary text-primary"
+							class="border-primary text-primary gap-3"
 							href="/blogs"
 						>
 							<span class="sr-only">Blogs</span>
@@ -97,7 +95,7 @@
 						{#if otherDomain}
 							<Button
 								variant="outline"
-								class="gap-3 border-tertiary text-tertiary"
+								class="border-tertiary text-tertiary gap-3"
 								href={otherDomain.homeUrl}
 							>
 								<span class="sr-only">{otherDomain.domainName}</span>
@@ -108,7 +106,7 @@
 							<div class="flex flex-col gap-2">
 								<Button
 									variant="outline"
-									class="gap-3 border-tertiary text-tertiary"
+									class="border-tertiary text-tertiary gap-3"
 									href={constants.homecare.homeUrl}
 								>
 									<span class="sr-only">{constants.homecare.domainName}</span>
@@ -117,7 +115,7 @@
 								</Button>
 								<Button
 									variant="outline"
-									class="gap-3 border-secondary text-secondary"
+									class="border-secondary text-secondary gap-3"
 									href={constants.renovation.homeUrl}
 								>
 									<span class="sr-only">{constants.homecare.domainName}</span>
@@ -131,12 +129,6 @@
 			</Sheet.Content>
 		</Sheet.Root>
 
-		<!-- Brand -->
-		{#if y < 60}
-			<div transition:fly>
-				<Brand />
-			</div>
-		{/if}
 		<!-- search -->
 		<div id="search" class="">
 			<Popover.Root>
@@ -145,13 +137,13 @@
 						<Search class="h-5 w-5" />
 					</Button>
 				</Popover.Trigger>
-				<Popover.Content class="w-full -translate-x-2 bg-muted" sideOffset={-40}>
+				<Popover.Content class="bg-muted w-full -translate-x-2" sideOffset={-40}>
 					<div class="relative">
-						<Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+						<Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
 						<Input
 							type="search"
 							placeholder="Search..."
-							class="w-full rounded-lg bg-background pl-8 focus-visible:ring-primary md:w-[200px] lg:w-[320px]"
+							class="bg-background focus-visible:ring-primary w-full rounded-lg pl-8 md:w-[200px] lg:w-[320px]"
 						/>
 					</div>
 				</Popover.Content>

@@ -11,4 +11,4 @@
 </script>
 
 <MobileNav bind:otherDomain />
-<DesktopNav bind:otherDomain />
+<DesktopNav />
