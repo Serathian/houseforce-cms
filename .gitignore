@@ -106,6 +106,8 @@ coverage
 ############################
 
 .env
+.env.*
+!.env.example
 license.txt
 exports
 .strapi
@@ -113,3 +115,10 @@ dist
 build
 .strapi-updater.json
 schemas-to-ts
+
+/build
+/.svelte-kit
+/package
+
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
