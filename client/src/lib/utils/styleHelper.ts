@@ -19,7 +19,7 @@ export const getDisplayOption = (displayOption: DisplayOption) => {
     case DisplayOption.OneThird:
       return "col-span-12 md:col-span-4";
     case DisplayOption.TwoThirds:
-      return "col-span-12 ms:col-span-8";
+      return "col-span-12 md:col-span-8";
     default:
       return "no-ds";
   }
