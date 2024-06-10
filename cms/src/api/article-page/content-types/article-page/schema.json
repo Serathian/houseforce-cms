@@ -24,6 +24,19 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "MainImage": {
+      "allowedTypes": ["images"],
+      "type": "media",
+      "multiple": false,
+      "required": false
+    },
+    "Introduction": {
+      "type": "richtext"
+    },
+    "ContentArea": {
+      "type": "dynamiczone",
+      "components": ["blocks.text-block"]
     }
   }
 }

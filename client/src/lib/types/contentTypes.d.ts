@@ -909,6 +909,9 @@ export interface ApiArticlePageArticlePage extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    MainImage: Attribute.Media;
+    Introduction: Attribute.RichText;
+    ContentArea: Attribute.DynamicZone<["blocks.text-block"]>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -984,8 +987,21 @@ export interface ApiBlogPageBlogPage extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    Title: Attribute.String & Attribute.Required & Attribute.Unique;
+    Title: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    MainImage: Attribute.Media;
     Introduction: Attribute.RichText;
     ContentArea: Attribute.DynamicZone<["blocks.text-block"]>;
     createdAt: Attribute.DateTime;
@@ -1003,6 +1019,12 @@ export interface ApiBlogPageBlogPage extends Schema.CollectionType {
       "admin::user"
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      "api::blog-page.blog-page",
+      "oneToMany",
+      "api::blog-page.blog-page"
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1135,6 +1157,9 @@ export interface ApiProjectPageProjectPage extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    MainImage: Attribute.Media;
+    Introduction: Attribute.RichText;
+    ContentArea: Attribute.DynamicZone<["blocks.text-block"]>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
