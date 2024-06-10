@@ -1,27 +1,74 @@
+import type { Attribute } from "@strapi/strapi";
+
 export enum Domain {
-	Renovation,
-	Homecare,
-	AboutUs,
-	Blogs,
-	Articles,
-	Projects,
-	NotSet
+  Renovation,
+  Homecare,
+  AboutUs,
+  Blogs,
+  Articles,
+  Projects,
+  NotSet,
 }
 
-export type CardData = {
-	attributes: CardDataAttributes;
-	id: number;
+export type CardData<T> = {
+  attributes: T;
+  id: number;
 };
 
-export type CardDataAttributes = {
-	Title: string;
-	Description: string;
-	ImageUrl: string;
-	createdAt: Date;
-};
+export interface CardDataAttributes {
+  Title: string;
+  Description: string;
+  MainImage: Attribute.Media<"images", false>;
+  createdAt: Date;
+}
 
-// TODO: Convert this to mirror what strapi provides
-export type StrapiImage = {
-	alternativeText: string;
-	name: string;
-};
+export interface Data<T> {
+  data: T;
+}
+
+// Own implemenation of Strapi mdia interface
+export interface ImageMediaData {
+  id: Number;
+  attributes: {
+    name: string;
+    alternativeText: string;
+    caption?: string;
+    width?: Number;
+    height?: Number;
+    formats?: Record<string, IFile>;
+    hash: string;
+    ext?: string;
+    mime: "image/jpeg";
+    size: 1859.5;
+    url: "/uploads/DSC_9609_329132be87.jpg";
+    previewUrl: null;
+    provider: "local";
+    provider_metadata: null;
+  };
+}
+
+export interface Attributes extends IFile {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IFile {
+  id: number;
+  name: string;
+  alternativeText?: string;
+  caption?: string;
+  width?: number;
+  height?: number;
+  formats?: Record<string, IFile>;
+  hash: string;
+  ext?: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: string;
+  path?: string;
+  provider?: string;
+  provider_metadata?: Record<string, unknown>;
+  type?: string;
+  mainHash?: string;
+}
