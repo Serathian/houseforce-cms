@@ -1,8 +1,11 @@
 <script lang="ts">
-	import CardGrid from '@/components/collection/cardGrid.svelte';
+	import CardGrid from '@/components/collection/CardGrid.svelte';
+	import BlogCard from '@/components/collection/BlogCard.svelte';
+
 	import type { APIResponse, APIResponseCollection } from '@/types/strapi';
 	import { Domain, type CardData } from '@/types/types.js';
 	import { updateCurrentTheme } from '@/utils/domainHelper';
+	import type { Attribute } from '@strapi/strapi';
 
 	// Props
 	export let data: {
@@ -14,21 +17,8 @@
 	let pageData = data.pageData.data;
 	let collection = data.collectionData.data;
 
-	let cardData = collection.map(
-		(x) =>
-			<CardData>{
-				attributes: {
-					Title: x.attributes.Title,
-					Description: 'work in progress',
-					ImageUrl: 'WIP',
-					createdAt: x.attributes.createdAt
-				},
-				id: x.id
-			}
-	);
 	updateCurrentTheme(Domain.Blogs, pageData.attributes.Title);
 </script>
 
 <h1>Blogs listed here</h1>
-
-<CardGrid collection={cardData} />
+<CardGrid {collection} component={BlogCard} />
