@@ -5,7 +5,7 @@
 		RichTextBlockFormat,
 		RichTextBlockType
 	} from '@/types/strapiRichText';
-	import type { StrapiImage } from '@/types/types';
+	import { getImgAlt, getImgName, getImgUrl } from '@/utils/mediaHelpers';
 
 	export let data: RichTextBlocks[];
 	export let cssClass: string;
@@ -42,11 +42,6 @@
 		});
 
 		return html;
-	};
-
-	// TODO: add image path parsing
-	const getPathForImage = (image: StrapiImage) => {
-		return '';
 	};
 </script>
 
@@ -115,11 +110,11 @@
 		<!-- Image -->
 		{#if block && block.type === RichTextBlockType.image && block.image}
 			<img
-				src={getPathForImage(block.image)}
+				src={getImgUrl(block.image)}
 				width="1000"
 				placeholder="15"
-				alt={block.image.alternativeText ?? ''}
-				title={block.image.name}
+				alt={getImgAlt(block.image)}
+				title={getImgName(block.image)}
 				class=""
 			/>
 		{/if}

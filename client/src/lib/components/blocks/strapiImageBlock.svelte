@@ -1,14 +1,15 @@
 <script lang="ts">
-	export let data;
+	import type { ImageMediaData } from '@/types/types';
+	import { getImgAlt, getImgUrl } from '@/utils/mediaHelpers';
+
+	export let imageData: ImageMediaData;
 	export let cssClass: string;
 
-	const imgUrl: string = data.data[0].attributes.url;
-	const imgSrc = 'http://localhost:1337' + imgUrl;
-	console.log(imgSrc);
+	console.log(imageData);
 </script>
 
 <img
 	class={cssClass + ' border-secondary my-auto w-full border-4 shadow-lg'}
-	src={imgSrc}
-	alt={data.alt ?? 'cms-image'}
+	src={getImgUrl(imageData)}
+	alt={getImgAlt(imageData)}
 />
