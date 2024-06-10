@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { currentTheme } from '@/stores';
-	import Brand from '../blocks/brand.svelte';
+	import Brand from '../blocks/Brand.svelte';
 	import { Domains } from '@/utils/constants';
 
 	let heroText: string;

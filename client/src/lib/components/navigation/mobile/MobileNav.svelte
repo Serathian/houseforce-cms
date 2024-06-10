@@ -17,7 +17,7 @@
 	// Other
 	import type { DomainConstants } from '@/utils/constants';
 	import constants from '@/utils/constants';
-	import Brand from '@/components/blocks/brand.svelte';
+	import Brand from '@/components/blocks/Brand.svelte';
 
 	// Props
 	export let otherDomain: DomainConstants;

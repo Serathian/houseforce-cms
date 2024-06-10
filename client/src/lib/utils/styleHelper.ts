@@ -7,8 +7,6 @@ export enum DisplayOption {
 }
 
 export const getDisplayOption = (displayOption: DisplayOption) => {
-  console.log(displayOption);
-
   switch (displayOption) {
     case DisplayOption.Full:
       return "col-span-12";

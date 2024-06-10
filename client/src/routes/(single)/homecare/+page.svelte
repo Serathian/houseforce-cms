@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ContentArea from '@/components/content-area/contentArea.svelte';
+	import ContentArea from '@/components/content-area/ContentArea.svelte';
 	import type { APIResponse } from '@/types/strapi';
 	import { Domain } from '@/types/types.js';
 	import { updateCurrentTheme } from '@/utils/domainHelper';
