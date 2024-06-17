@@ -125,3 +125,8 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 .npmrc
+
+############################
+# Meilisearch
+############################
+/meili_data
