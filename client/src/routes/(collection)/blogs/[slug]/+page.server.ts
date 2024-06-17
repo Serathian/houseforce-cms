@@ -1,10 +1,8 @@
-import { type Payload } from '$cmstypes/common/Payload';
-import { type BlogPage } from '$cmstypes/api/blog-page';
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from "./$types";
+import { Domain } from "@/types/types";
+import { LoadCollectionItem } from "@/api/collectionTypeApi";
 
+// TODO: All server loads should pass the fetch to the method?
 export const load: PageServerLoad = async ({ fetch, params }) => {
-	const response = await fetch(`http://localhost:1337/api/blog-pages/${params.slug}`);
-	const payload: Payload<BlogPage> = await response.json();
-
-	return payload.data;
+  return await LoadCollectionItem(Domain.Blogs, params.slug);
 };
