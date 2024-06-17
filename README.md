@@ -1,57 +1,23 @@
-# 🚀 Getting started with Strapi
+# HouseForce.biz - Headless CMS and Client
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+## Headless CMS - Strapi.io
 
-### `develop`
+- type import to frontend: https://strapi.io/blog/improve-your-frontend-experience-with-strapi-types-and-type-script
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+### Search Engine
 
-```
-npm run develop
-# or
-yarn develop
-```
+- Search Index: https://www.meilisearch.com/docs/reference/api/overview
+- Index JS integration: https://github.com/meilisearch/meilisearch-js-plugins/tree/main/packages/instant-meilisearch#-example-with-instantsearch
 
-### `start`
+## Client - Svelte-kit
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+- general info for Svelte: https://kit.svelte.dev/
+- svelte tutorial: https://learn.svelte.dev/
+- icons: https://lucide.dev/icons/
+- used in the richTextBlock: https://github.com/tailwindlabs/tailwindcss-typography
+- ui framework in use: https://www.shadcn-svelte.com/
+- populating dynamic content areas: https://docs.strapi.io/dev-docs/api/rest/populate-select
 
-```
-npm run start
-# or
-yarn start
-```
+### Theming
 
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
-```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+- colour pallet: https://coolors.co/ecc8af-99d2e8-c56bcf-c18c5d-495867
