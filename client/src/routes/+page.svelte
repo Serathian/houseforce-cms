@@ -11,12 +11,12 @@
 				<span class="text-4xl text-muted">Renovation</span>
 			</a>
 		</div>
-		<div
-			class="flex h-full max-h-80 w-full items-center justify-center bg-tertiary to-muted shadow-lg hover:bg-tertiary-foreground hover:shadow-inner"
-		>
-			<a href={constants.homecare.homeUrl}>
+		<div class="relative block h-full max-h-80 w-full">
+			<a class="before:bg-primary before:rotate-3 before:w-full before:h-full before:-z-1 before:absolute relative flex h-full w-full items-center justify-center bg-tertiary to-muted shadow-lg hover:bg-tertiary-foreground hover:shadow-inner"
+				href={constants.homecare.homeUrl}>
 				<span class="text-4xl text-muted">Homecare</span>
 			</a>
+
 		</div>
 	</div>
 </div>
