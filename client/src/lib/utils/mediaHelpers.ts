@@ -1,10 +1,13 @@
 import type { Data, ImageMediaData } from "@/types/types";
 
 export const getImgUrl = (imageData: ImageMediaData) => {
-  const baseUrl = "http://localhost:1337";
   const imgUrl = imageData.attributes.url;
+  return getImgUrlString(imgUrl);
+};
 
-  return baseUrl + imgUrl;
+export const getImgUrlString = (imageUrl: string) => {
+  const baseUrl = "http://localhost:1337";
+  return baseUrl + imageUrl;
 };
 
 export const getImgAlt = (imageData: ImageMediaData) => {
