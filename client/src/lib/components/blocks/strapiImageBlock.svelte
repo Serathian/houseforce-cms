@@ -4,8 +4,6 @@
 
 	export let imageData: ImageMediaData;
 	export let cssClass: string;
-
-	console.log(imageData);
 </script>
 
 <img

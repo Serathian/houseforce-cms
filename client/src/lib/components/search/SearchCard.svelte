@@ -2,7 +2,6 @@
   import { getImgUrlString } from "@/utils/mediaHelpers";
 
   export let hit;
-  console.log(hit);
 </script>
 
 {#if hit.id}

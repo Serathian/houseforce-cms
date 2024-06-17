@@ -5,7 +5,6 @@
   import { DisplayOption, getDisplayOption } from "@/utils/styleHelper";
 
   export let cardData: ApiBlogPageBlogPage;
-  console.log(cardData.id);
   const imageData = cardData.attributes
     .MainImage as unknown as Data<ImageMediaData>;
 </script>
