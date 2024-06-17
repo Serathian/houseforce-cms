@@ -3,7 +3,7 @@ import type {
   APIResponseCollection,
   APIResponseData,
 } from "@/types/strapi";
-import { Domain } from "@/types/types";
+import { Pages } from "@/types/types";
 import constants from "@/utils/constants";
 import type { Common } from "@strapi/strapi";
 import qs from "qs";
@@ -13,12 +13,12 @@ import { GetSingleType } from "./singleTypeApi";
 // TODO this needs to have authentication token
 const BASE_URL = "http://localhost:1337/api";
 
-export const LoadCollectionType = async (domain: Domain) => {
+export const LoadCollectionType = async (domain: Pages) => {
   let pageData: APIResponse<Common.UID.ContentType>;
   let collectionData: APIResponseCollection<Common.UID.ContentType>;
 
   switch (domain) {
-    case Domain.Articles:
+    case Pages.Articles:
       pageData = await GetSingleType<APIResponse<"api::article.article">>(
         constants.articles.cmsEndpoint,
       );
@@ -26,7 +26,7 @@ export const LoadCollectionType = async (domain: Domain) => {
         APIResponseCollection<"api::article-page.article-page">
       >(constants.articles.collectionEnpoint);
       break;
-    case Domain.Blogs:
+    case Pages.Blogs:
       pageData = await GetSingleType<APIResponse<"api::blog.blog">>(
         constants.blogs.cmsEndpoint,
       );
@@ -34,7 +34,7 @@ export const LoadCollectionType = async (domain: Domain) => {
         APIResponseCollection<"api::blog-page.blog-page">
       >(constants.blogs.collectionEnpoint);
       break;
-    case Domain.Projects:
+    case Pages.Projects:
       pageData = await GetSingleType<APIResponse<"api::project.project">>(
         constants.projects.cmsEndpoint,
       );
@@ -42,7 +42,7 @@ export const LoadCollectionType = async (domain: Domain) => {
         APIResponseCollection<"api::project-page.project-page">
       >(constants.projects.collectionEnpoint);
       break;
-    case (Domain.Homecare, Domain.Renovation, Domain.AboutUs):
+    case (Pages.Homecare, Pages.Renovation, Pages.AboutUs):
       throw new Error("something went wrongs");
     default:
       throw new Error("something went wrongs");
@@ -73,12 +73,12 @@ export const GetCollectionType = async <
   return (await getData()) as Type;
 };
 
-export const LoadCollectionItem = async (domain: Domain, slug: string) => {
+export const LoadCollectionItem = async (domain: Pages, slug: string) => {
   let pageData: APIResponse<Common.UID.ContentType>;
   let collectionData: APIResponseCollection<Common.UID.ContentType>;
 
   switch (domain) {
-    case Domain.Articles:
+    case Pages.Articles:
       pageData = await GetSingleType<APIResponse<"api::article.article">>(
         constants.articles.cmsEndpoint,
       );
@@ -86,12 +86,12 @@ export const LoadCollectionItem = async (domain: Domain, slug: string) => {
         APIResponseCollection<"api::article-page.article-page">
       >(constants.articles.collectionEnpoint);
       break;
-    case Domain.Blogs:
+    case Pages.Blogs:
       return await GetCollectionItem<
         APIResponseData<"api::blog-page.blog-page">
       >(constants.blogs.collectionEnpoint + "/" + slug);
 
-    case Domain.Projects:
+    case Pages.Projects:
       pageData = await GetSingleType<APIResponse<"api::project.project">>(
         constants.projects.cmsEndpoint,
       );
@@ -99,7 +99,7 @@ export const LoadCollectionItem = async (domain: Domain, slug: string) => {
         APIResponseCollection<"api::project-page.project-page">
       >(constants.projects.collectionEnpoint);
       break;
-    case (Domain.Homecare, Domain.Renovation, Domain.AboutUs):
+    case (Pages.Homecare, Pages.Renovation, Pages.AboutUs):
       throw new Error("something went wrongs");
     default:
       throw new Error("something went wrongs");
