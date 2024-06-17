@@ -21,3 +21,7 @@
 ### Theming
 
 - colour pallet: https://coolors.co/ecc8af-99d2e8-c56bcf-c18c5d-495867
+
+## Running the project
+
+docker run -it --rm -p 7700:7700 -e MEILI_ENV='development' -v ${pwd}/meili_data:/meili_data getmeili/meilisearch:latest
