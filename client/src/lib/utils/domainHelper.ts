@@ -1,41 +1,45 @@
 import { currentTheme } from "@/stores";
 import constants, { type DomainConstants } from "./constants";
-import { Domain } from "@/types/types";
+import { Pages } from "@/types/types";
 
-export const updateCurrentTheme = (newtheme: Domain, heroText: string) => {
+export const updateCurrentTheme = (newtheme: Pages) => {
   let currentDomain: DomainConstants;
   let otherDomain: DomainConstants;
 
   switch (newtheme) {
-    case Domain.Renovation:
+    case Pages.Renovation:
       currentDomain = constants.renovation;
       otherDomain = constants.homecare;
       break;
 
-    case Domain.Homecare:
+    case Pages.Homecare:
       currentDomain = constants.homecare;
       otherDomain = constants.renovation;
       break;
 
     // Minor domains don't have a secondary.
-    case Domain.AboutUs:
+    case Pages.AboutUs:
       currentDomain = constants.aboutus;
       break;
 
+    case Pages.Search:
+      currentDomain = constants.search;
+      break;
+
     // Collection
-    case Domain.Blogs:
+    case Pages.Blogs:
       currentDomain = constants.blogs;
       break;
 
-    case Domain.Articles:
+    case Pages.Articles:
       currentDomain = constants.articles;
       break;
 
-    case Domain.Projects:
+    case Pages.Projects:
       currentDomain = constants.projects;
       break;
 
-    case Domain.NotSet:
+    case Pages.NotSet:
       break;
 
     default:
@@ -49,7 +53,6 @@ export const updateCurrentTheme = (newtheme: Domain, heroText: string) => {
       (t = {
         currentDomain: currentDomain,
         otherDomain: otherDomain,
-        heroText,
       }),
   );
 };

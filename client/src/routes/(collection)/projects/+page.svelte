@@ -1,21 +1,21 @@
 <script lang="ts">
-	import CardGrid from '@/components/collection/CardGrid.svelte';
-	import ProjectCard from '@/components/collection/ProjectCard.svelte';
-	import type { APIResponse, APIResponseCollection } from '@/types/strapi';
-	import { Domain, type CardData } from '@/types/types.js';
-	import { updateCurrentTheme } from '@/utils/domainHelper';
+  import CardGrid from "@/components/collection/CardGrid.svelte";
+  import ProjectCard from "@/components/collection/ProjectCard.svelte";
+  import type { APIResponse, APIResponseCollection } from "@/types/strapi";
+  import { Pages, type CardData } from "@/types/types.js";
+  import { updateCurrentTheme } from "@/utils/domainHelper";
 
-	// Props
-	export let data: {
-		pageData: APIResponse<'api::project.project'>;
-		collectionData: APIResponseCollection<'api::project-page.project-page'>;
-	};
+  // Props
+  export let data: {
+    pageData: APIResponse<"api::project.project">;
+    collectionData: APIResponseCollection<"api::project-page.project-page">;
+  };
 
-	// Data
-	let pageData = data.pageData.data;
-	let collection = data.collectionData.data;
+  // Data
+  let pageData = data.pageData.data;
+  let collection = data.collectionData.data;
 
-	updateCurrentTheme(Domain.Projects, pageData.attributes.Title);
+  updateCurrentTheme(Pages.Projects);
 </script>
 
 <h1>Projects listed here</h1>

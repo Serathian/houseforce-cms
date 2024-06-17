@@ -1,9 +1,10 @@
 import type { Attribute } from "@strapi/strapi";
 
-export enum Domain {
+export enum Pages {
   Renovation,
   Homecare,
   AboutUs,
+  Search,
   Blogs,
   Articles,
   Projects,

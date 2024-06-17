@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { Domain } from '@/types/types.js';
-	import { updateCurrentTheme } from '@/utils/domainHelper';
+  import { Pages } from "@/types/types.js";
+  import { updateCurrentTheme } from "@/utils/domainHelper";
 
-	// Props
-	export let data;
+  // Props
+  export let data;
 
-	// Page Data
-	let pageData = data.data;
+  // Page Data
+  let pageData = data.data;
 
-	updateCurrentTheme(Domain.AboutUs, pageData.attributes.Title);
+  updateCurrentTheme(Pages.AboutUs);
 </script>
 
 <h1>About Us Page</h1>

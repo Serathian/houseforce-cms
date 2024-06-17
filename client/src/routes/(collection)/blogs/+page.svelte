@@ -1,23 +1,23 @@
 <script lang="ts">
-	import CardGrid from '@/components/collection/CardGrid.svelte';
-	import BlogCard from '@/components/collection/BlogCard.svelte';
+  import CardGrid from "@/components/collection/CardGrid.svelte";
+  import BlogCard from "@/components/collection/BlogCard.svelte";
 
-	import type { APIResponse, APIResponseCollection } from '@/types/strapi';
-	import { Domain, type CardData } from '@/types/types.js';
-	import { updateCurrentTheme } from '@/utils/domainHelper';
-	import type { Attribute } from '@strapi/strapi';
+  import type { APIResponse, APIResponseCollection } from "@/types/strapi";
+  import { Pages, type CardData } from "@/types/types.js";
+  import { updateCurrentTheme } from "@/utils/domainHelper";
+  import type { Attribute } from "@strapi/strapi";
 
-	// Props
-	export let data: {
-		pageData: APIResponse<'api::blog.blog'>;
-		collectionData: APIResponseCollection<'api::blog-page.blog-page'>;
-	};
+  // Props
+  export let data: {
+    pageData: APIResponse<"api::blog.blog">;
+    collectionData: APIResponseCollection<"api::blog-page.blog-page">;
+  };
 
-	// Data
-	let pageData = data.pageData.data;
-	let collection = data.collectionData.data;
+  // Data
+  let pageData = data.pageData.data;
+  let collection = data.collectionData.data;
 
-	updateCurrentTheme(Domain.Blogs, pageData.attributes.Title);
+  updateCurrentTheme(Pages.Blogs);
 </script>
 
 <h1>Blogs listed here</h1>
