@@ -1,4 +1,6 @@
-import { PUBLIC_SEARCH_BASE_URL } from "$env/static/public";
+import { env } from "$env/dynamic/public";
+
+const { PUBLIC_SEARCH_BASE_URL } = env;
 
 interface MeilisearchParameters {
   q?: string;

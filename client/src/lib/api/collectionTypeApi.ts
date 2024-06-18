@@ -8,10 +8,9 @@ import constants from "@/utils/constants";
 import type { Common } from "@strapi/strapi";
 import qs from "qs";
 import { GetSingleType } from "./singleTypeApi";
+import { env } from "$env/dynamic/public";
 
-// TODO this should be a env variable
-// TODO this needs to have authentication token
-const BASE_URL = "http://localhost:1337/api";
+const { PUBLIC_CMS_BASE_URL } = env;
 
 export const LoadCollectionType = async (domain: Pages) => {
   let pageData: APIResponse<Common.UID.ContentType>;
@@ -60,7 +59,7 @@ export const GetCollectionType = async <
   const query = qs.stringify({ populate: "*" });
 
   async function getData() {
-    const res = await fetch(BASE_URL + path + "?" + query);
+    const res = await fetch(PUBLIC_CMS_BASE_URL + path + "?" + query);
 
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary
@@ -114,7 +113,7 @@ export const GetCollectionItem = async <
   const query = qs.stringify({ populate: "*" });
 
   async function getData() {
-    const res = await fetch(BASE_URL + path + "?" + query);
+    const res = await fetch(PUBLIC_CMS_BASE_URL + path + "?" + query);
 
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary

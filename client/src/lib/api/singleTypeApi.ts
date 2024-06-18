@@ -2,11 +2,10 @@ import type { APIResponse } from "@/types/strapi";
 import { Pages } from "@/types/types";
 import constants from "@/utils/constants";
 import type { Common } from "@strapi/strapi";
-import qs from "qs";
+import { stringify } from "qs";
+import { env } from "$env/dynamic/public";
 
-// TODO this should be a env variable
-// TODO this needs to have authentication token
-const BASE_URL = "http://localhost:1337/api";
+const { PUBLIC_CMS_BASE_URL } = env;
 
 export const LoadSingleType = async (domain: Pages) => {
   switch (domain) {
@@ -34,15 +33,15 @@ export const GetSingleType = async <
 >(
   path: string,
 ) => {
-  const query = qs.stringify({ populate: "*" });
+  const query = stringify({ populate: "*" });
   async function getData() {
     const res = await fetch(
-      BASE_URL + path + "?" + "populate[ContentArea][populate]=*",
+      PUBLIC_CMS_BASE_URL + path + "?" + "populate[ContentArea][populate]=*",
     );
 
     if (!res.ok) {
       // This will activate the closest `error.js` Error Boundary
-      throw new Error("Failed to fetch data");
+      throw new Error("Failed to fetch data", { cause: res });
     }
 
     return res.json();

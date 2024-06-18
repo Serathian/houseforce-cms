@@ -44,7 +44,7 @@ const renovation: DomainConstants = {
   dataTheme: "renovation",
   domainName: "Renovation",
   homeUrl: "/renovation",
-  cmsEndpoint: "/renovation",
+  cmsEndpoint: "/api/renovation",
   pageType: PageType.Main,
 };
 
@@ -53,7 +53,7 @@ const homecare: DomainConstants = {
   dataTheme: "homecare",
   domainName: "Homecare",
   homeUrl: "/homecare",
-  cmsEndpoint: "/homecare",
+  cmsEndpoint: "/api/homecare",
   pageType: PageType.Main,
 };
 
@@ -63,7 +63,7 @@ const aboutus: DomainConstants = {
   dataTheme: "other",
   domainName: "Excellence is a way of life",
   homeUrl: "/about-us",
-  cmsEndpoint: "/about-us",
+  cmsEndpoint: "/api/about-us",
   pageType: PageType.Minor,
 };
 
@@ -72,7 +72,7 @@ const search: DomainConstants = {
   dataTheme: "other",
   domainName: "Excellence is a way of life",
   homeUrl: "/search",
-  cmsEndpoint: "/search",
+  cmsEndpoint: "/api/search",
   pageType: PageType.Minor,
 };
 
@@ -82,9 +82,9 @@ const articles: CollectionDomain = {
   dataTheme: "other",
   domainName: "Excellence is a way of life",
   homeUrl: "/articles",
-  cmsEndpoint: "/article",
-  collectionEnpoint: "/article-pages",
-  collectionFindOneEndpoint: "/article-page",
+  cmsEndpoint: "/api/article",
+  collectionEnpoint: "/api/article-pages",
+  collectionFindOneEndpoint: "/api/article-page",
   pageType: PageType.Collection,
 };
 
@@ -93,9 +93,9 @@ const blogs: CollectionDomain = {
   dataTheme: "other",
   domainName: "Excellence is a way of life",
   homeUrl: "/blogs",
-  cmsEndpoint: "/blog",
-  collectionEnpoint: "/blog-pages",
-  collectionFindOneEndpoint: "/blog-page",
+  cmsEndpoint: "/api/blog",
+  collectionEnpoint: "/api/blog-pages",
+  collectionFindOneEndpoint: "/api/blog-page",
   pageType: PageType.Collection,
 };
 
@@ -104,9 +104,9 @@ const projects: CollectionDomain = {
   dataTheme: "other",
   domainName: "Excellence is a way of life",
   homeUrl: "/projects",
-  cmsEndpoint: "/project",
-  collectionEnpoint: "/project-pages",
-  collectionFindOneEndpoint: "/project-page",
+  cmsEndpoint: "/api/project",
+  collectionEnpoint: "/api/project-pages",
+  collectionFindOneEndpoint: "/api/project-page",
   pageType: PageType.Collection,
 };
 

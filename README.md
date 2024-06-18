@@ -1,5 +1,9 @@
 # HouseForce.biz - Headless CMS and Client
 
+## Local development
+
+`docker-compose -f docker.compose.dev.yml up --build`
+
 ## Headless CMS - Strapi.io
 
 - type import to frontend: https://strapi.io/blog/improve-your-frontend-experience-with-strapi-types-and-type-script
@@ -17,11 +21,12 @@
 - used in the richTextBlock: https://github.com/tailwindlabs/tailwindcss-typography
 - ui framework in use: https://www.shadcn-svelte.com/
 - populating dynamic content areas: https://docs.strapi.io/dev-docs/api/rest/populate-select
+- Environment Variables: https://kit.svelte.dev/docs/adapter-node#environment-variables
 
 ### Theming
 
 - colour pallet: https://coolors.co/ecc8af-99d2e8-c56bcf-c18c5d-495867
 
-## Running the project
+## Testing production
 
-docker run -it --rm -p 7700:7700 -e MEILI_ENV='development' -v ${pwd}/meili_data:/meili_data getmeili/meilisearch:latest
+`docker-compose -p houseforce_production up`
