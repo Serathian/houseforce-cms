@@ -3,11 +3,9 @@
   import Brand from "../blocks/Brand.svelte";
   import { Domains } from "@/utils/constants";
 
-  let heroText: string;
   let isHomecare: boolean;
   let isRenovation: boolean;
   currentTheme.subscribe((value) => {
-    heroText = value.heroText;
     isHomecare = value.currentDomain.domain == Domains.Homecare;
     isRenovation = value.currentDomain.domain == Domains.Renovation;
   });
