@@ -29,13 +29,13 @@ export interface Data<T> {
 
 // Own implemenation of Strapi mdia interface
 export interface ImageMediaData {
-  id: Number;
+  id: number;
   attributes: {
     name: string;
     alternativeText: string;
     caption?: string;
-    width?: Number;
-    height?: Number;
+    width?: number;
+    height?: number;
     formats?: Record<string, IFile>;
     hash: string;
     ext?: string;
