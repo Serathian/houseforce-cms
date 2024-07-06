@@ -2,14 +2,25 @@
   import type { ApiBlogPageBlogPage } from "@/types/contentTypes";
   import { getImgAlt, getImgUrl } from "@/utils/mediaHelpers";
   import type { Data, ImageMediaData } from "@/types/types";
-  import { DisplayOption, getDisplayOption } from "@/utils/styleHelper";
+  import {
+    getDisplayOption,
+    RadiusOption,
+    SizeOption,
+  } from "@/utils/styleHelper";
 
   export let cardData: ApiBlogPageBlogPage;
   const imageData = cardData.attributes
     .MainImage as unknown as Data<ImageMediaData>;
 </script>
 
-<a href="/" class={getDisplayOption(DisplayOption.OneThird) + " relative z-0"}>
+<a
+  href="/"
+  class={getDisplayOption({
+    BlockSize: SizeOption.OneThird,
+    Border: false,
+    BorderRadius: RadiusOption.None,
+  }) + " relative z-0"}
+>
   <img
     src={getImgUrl(imageData.data)}
     alt={getImgAlt(imageData.data)}

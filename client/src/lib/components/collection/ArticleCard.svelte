@@ -2,14 +2,24 @@
   import type { ApiArticlePageArticlePage } from "@/types/contentTypes";
   import type { Data, ImageMediaData } from "@/types/types";
   import { getImgAlt, getImgUrl } from "@/utils/mediaHelpers";
-  import { DisplayOption, getDisplayOption } from "@/utils/styleHelper";
+  import {
+    getDisplayOption,
+    RadiusOption,
+    SizeOption,
+  } from "@/utils/styleHelper";
 
   export let cardData: ApiArticlePageArticlePage;
   const imageData = cardData.attributes
     .MainImage as unknown as Data<ImageMediaData>;
 </script>
 
-<div class={getDisplayOption(DisplayOption.OneThird) + " h-full"}>
+<div
+  class={getDisplayOption({
+    BlockSize: SizeOption.OneThird,
+    Border: false,
+    BorderRadius: RadiusOption.None,
+  }) + " h-full"}
+>
   <img
     src={getImgUrl(imageData.data)}
     alt={getImgAlt(imageData.data)}
