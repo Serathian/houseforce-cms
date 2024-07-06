@@ -8,10 +8,11 @@
   // TODO: type this
   //item.Media.data is an array?
   export let data;
+  export let cssClass = "";
   console.log(data);
 </script>
 
-<div class="grid grid-cols-12 gap-6">
+<div class={cssClass + " grid grid-cols-12 gap-6"}>
   {#each data as block}
     {#if block.__component === "blocks.text-block"}
       <RichTextBlock {block} />

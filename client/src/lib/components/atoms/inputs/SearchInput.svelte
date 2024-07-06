@@ -2,9 +2,11 @@
   import { Input } from "$lib/components/ui/input";
   import { goto } from "$app/navigation";
   import Search from "lucide-svelte/icons/search";
+
+  export let cssClass = "";
 </script>
 
-<div class="relative">
+<div class={cssClass + " relative"}>
   <Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
   <Input
     on:keydown={(e) => {
