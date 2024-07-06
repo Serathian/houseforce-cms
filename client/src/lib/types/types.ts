@@ -29,7 +29,7 @@ export interface Data<T> {
 
 // Own implemenation of Strapi mdia interface
 export interface ImageMediaData {
-  id: number;
+    id: number;
   attributes: {
     name: string;
     alternativeText: string;

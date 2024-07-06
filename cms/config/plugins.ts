@@ -1,8 +1,11 @@
 export default ({ env }) => ({
   meilisearch: {
     config: {
-      host: env("MEILI_HOST", "default_meilisearch_host"),
-      apiKey: env("MEILI_MASTER_KEY", "default_meilisearch_master_key"),
+      host: env("MEILI_HOST", "http://localhost:7700"),
+      apiKey: env(
+        "MEILI_MASTER_KEY",
+        "CSoHrJ1ALmEa1U3fZ6TmgHb3CXqhcAeAfZHXLsqquHQ",
+      ),
       "blog-page": {
         indexName: ["blog-page", "content"],
       },

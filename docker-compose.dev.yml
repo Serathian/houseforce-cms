@@ -4,9 +4,9 @@ services:
     ports:
       - "7700:7700"
     environment:
-      - MEILI_ENV=development
-      - MEILI_HOST
-      - MEILI_MASTER_KEY
+      MEILI_ENV: development
+      MEILI_HOST: 7700
+      MEILI_MASTER_KEY: CSoHrJ1ALmEa1U3fZ6TmgHb3CXqhcAeAfZHXLsqquHQ
     volumes:
       - ./meili_data:/meili_data
     restart: unless-stopped
@@ -14,12 +14,12 @@ services:
   postgres-dev:
     image: postgres:latest
     environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5454:5432"
+      - "5432:5432"
 volumes:
   postgres_data:
