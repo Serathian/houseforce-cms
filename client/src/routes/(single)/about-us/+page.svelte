@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ContentArea from "@/components/content-area/ContentArea.svelte";
   import { Pages } from "@/types/types.js";
   import { updateCurrentTheme } from "@/utils/domainHelper";
 
@@ -7,8 +8,8 @@
 
   // Page Data
   let pageData = data.data;
-
+  let contentArea = pageData.attributes.ContentArea;
   updateCurrentTheme(Pages.AboutUs);
 </script>
 
-<h1>About Us Page</h1>
+<ContentArea data={contentArea} />
