@@ -1215,7 +1215,7 @@ export interface ApiRenovationRenovation extends Schema.SingleType {
         "blocks.text-block",
         "blocks.header-block",
         "blocks.separator-block",
-        "blocks.tab-block"
+        "blocks.tab-block",
       ]
     > &
       Attribute.SetPluginOptions<{

@@ -16,7 +16,7 @@ const config = {
     }),
     alias: {
       $cmstypes: "src/cmstypes",
-      "@/*": "./src/lib"
+      "@/*": "./src/lib",
     },
   },
 };

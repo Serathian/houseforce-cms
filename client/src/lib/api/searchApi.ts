@@ -21,7 +21,7 @@ interface MeilisearchParameters {
   matchingStrategy?: string;
   showRankingScore?: boolean;
   attributesToSearchOn?: string[];
-  hybrid?: Object;
+  hybrid?: object;
   vector?: number[];
 }
 
@@ -34,9 +34,9 @@ interface MeilisearchResult<T> {
   totalPages: number;
   hitsPerPage: number;
   page: number;
-  facetDistribution: Object;
-  facetStats: Object;
-  processingTimeMs: Number;
+  facetDistribution: object;
+  facetStats: object;
+  processingTimeMs: number;
   query: string;
 }
 
@@ -58,6 +58,6 @@ export const Search = async (query: string, fetcher: typeof fetch = fetch) => {
   if (!response.ok) {
     throw new Error("Error in search");
   }
-  const result: MeilisearchResult<Object> = await response.json();
+  const result: MeilisearchResult<object> = await response.json();
   return result;
 };

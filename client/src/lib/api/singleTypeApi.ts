@@ -2,7 +2,7 @@ import type { APIResponse } from "@/types/strapi";
 import { Pages } from "@/types/types";
 import constants from "@/utils/constants";
 import type { Common } from "@strapi/strapi";
-import { stringify } from "qs";
+//import { stringify } from "qs";
 import { env } from "$env/dynamic/public";
 
 const { PUBLIC_CMS_BASE_URL } = env;
@@ -33,7 +33,7 @@ export const GetSingleType = async <
 >(
   path: string,
 ) => {
-  const query = stringify({ populate: "*" });
+  //const query = stringify({ populate: "*" });
   async function getData() {
     const res = await fetch(
       PUBLIC_CMS_BASE_URL + path + "?" + "populate[ContentArea][populate]=*",

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { ImageMediaData } from "@/types/types";
   import { getImgAlt, getImgUrl } from "@/utils/mediaHelpers";
   import { getDisplayOption } from "@/utils/styleHelper";
 

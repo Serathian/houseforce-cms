@@ -4,7 +4,6 @@
   import SeperatorBlock from "../blocks/SeperatorBlock.svelte";
   import HeaderBlock from "../blocks/HeaderBlock.svelte";
   import TabsBlock from "../blocks/TabsBlock.svelte";
-  import AccordionBlock from "../blocks/AccordionBlock.svelte";
 
   // TODO: type this
   //item.Media.data is an array?
@@ -24,8 +23,6 @@
       <HeaderBlock {block} />
     {:else if block.__component === "blocks.tab-block"}
       <TabsBlock {block} />
-    {:else if block.__component === "blocks.accordion-block"}
-      <AccordionBlock {block} />
     {/if}
   {/each}
 </div>

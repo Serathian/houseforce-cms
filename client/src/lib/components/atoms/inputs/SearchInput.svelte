@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Input } from "$lib/components/ui/input";
-  import { goto, replaceState } from "$app/navigation";
+  import { goto } from "$app/navigation";
   import Search from "lucide-svelte/icons/search";
 </script>
 

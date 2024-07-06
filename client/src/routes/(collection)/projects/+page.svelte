@@ -2,7 +2,7 @@
   import CardGrid from "@/components/collection/CardGrid.svelte";
   import ProjectCard from "@/components/collection/ProjectCard.svelte";
   import type { APIResponse, APIResponseCollection } from "@/types/strapi";
-  import { Pages, type CardData } from "@/types/types.js";
+  import { Pages } from "@/types/types.js";
   import { updateCurrentTheme } from "@/utils/domainHelper";
 
   // Props

@@ -73,33 +73,15 @@ export const GetCollectionType = async <
 };
 
 export const LoadCollectionItem = async (domain: Pages, slug: string) => {
-  let pageData: APIResponse<Common.UID.ContentType>;
-  let collectionData: APIResponseCollection<Common.UID.ContentType>;
-
   switch (domain) {
     case Pages.Articles:
-      pageData = await GetSingleType<APIResponse<"api::article.article">>(
-        constants.articles.cmsEndpoint,
-      );
-      collectionData = await GetCollectionType<
-        APIResponseCollection<"api::article-page.article-page">
-      >(constants.articles.collectionEnpoint);
       break;
     case Pages.Blogs:
       return await GetCollectionItem<
         APIResponseData<"api::blog-page.blog-page">
       >(constants.blogs.collectionEnpoint + "/" + slug);
-
     case Pages.Projects:
-      pageData = await GetSingleType<APIResponse<"api::project.project">>(
-        constants.projects.cmsEndpoint,
-      );
-      collectionData = await GetCollectionType<
-        APIResponseCollection<"api::project-page.project-page">
-      >(constants.projects.collectionEnpoint);
       break;
-    case (Pages.Homecare, Pages.Renovation, Pages.AboutUs):
-      throw new Error("something went wrongs");
     default:
       throw new Error("something went wrongs");
   }
