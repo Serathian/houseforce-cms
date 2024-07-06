@@ -3,13 +3,18 @@
   import { Input } from "$lib/components/ui/input";
   import Textarea from "../ui/textarea/textarea.svelte";
   import { contactSchema } from "./contactSchema";
-  import { superForm } from "sveltekit-superforms";
-  import { zodClient } from "sveltekit-superforms/adapters";
+  import { defaults, superForm } from "sveltekit-superforms";
+  import { zod } from "sveltekit-superforms/adapters";
 
-  export let data;
+  export let submitSuccess: boolean;
 
-  const form = superForm(data, {
-    validators: zodClient(contactSchema),
+  const form = superForm(defaults(zod(contactSchema)), {
+    validators: zod(contactSchema),
+    onResult({ result }) {
+      if (result.status == 200) {
+        submitSuccess = true;
+      }
+    },
   });
 
   const { form: formData, enhance } = form;
