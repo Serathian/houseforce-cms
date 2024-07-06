@@ -27,17 +27,45 @@
       "unique": true
     },
     "MainImage": {
-      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
-      "required": false
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Introduction": {
-      "type": "richtext"
+      "type": "richtext",
+      "maxLength": 250,
+      "minLength": 50,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
     },
     "ContentArea": {
       "type": "dynamiczone",
-      "components": ["blocks.text-block"]
+      "components": [
+        "blocks.text-block",
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block"
+      ]
+    },
+    "Tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "blog_pages"
+    },
+    "Category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "blog_pages"
     }
   }
 }

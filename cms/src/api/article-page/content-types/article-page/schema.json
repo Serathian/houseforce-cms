@@ -4,7 +4,8 @@
   "info": {
     "singularName": "article-page",
     "pluralName": "article-pages",
-    "displayName": "Article Page"
+    "displayName": "Article Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -26,17 +27,45 @@
       "unique": true
     },
     "MainImage": {
-      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
-      "required": false
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Introduction": {
-      "type": "richtext"
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "maxLength": 250,
+      "required": true,
+      "minLength": 50
     },
     "ContentArea": {
       "type": "dynamiczone",
-      "components": ["blocks.text-block"]
+      "components": [
+        "blocks.text-block",
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block"
+      ]
+    },
+    "Tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "article_pages"
+    },
+    "Category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "article_pages"
     }
   }
 }

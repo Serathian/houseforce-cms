@@ -4,7 +4,8 @@
   "info": {
     "singularName": "about-us",
     "pluralName": "about-uses",
-    "displayName": "About Us"
+    "displayName": "About Us",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,6 +25,21 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "ContentArea": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block",
+        "blocks.text-block"
+      ]
     }
   }
 }

@@ -794,6 +794,7 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
     singularName: "about-us";
     pluralName: "about-uses";
     displayName: "About Us";
+    description: "";
   };
   options: {
     draftAndPublish: true;
@@ -807,6 +808,20 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
     Title: Attribute.String &
       Attribute.Required &
       Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ContentArea: Attribute.DynamicZone<
+      [
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block",
+        "blocks.text-block"
+      ]
+    > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -861,6 +876,20 @@ export interface ApiArticleArticle extends Schema.SingleType {
           localized: true;
         };
       }>;
+    ContentArea: Attribute.DynamicZone<
+      [
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block",
+        "blocks.text-block"
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -891,6 +920,7 @@ export interface ApiArticlePageArticlePage extends Schema.CollectionType {
     singularName: "article-page";
     pluralName: "article-pages";
     displayName: "Article Page";
+    description: "";
   };
   options: {
     draftAndPublish: true;
@@ -910,8 +940,36 @@ export interface ApiArticlePageArticlePage extends Schema.CollectionType {
         };
       }>;
     MainImage: Attribute.Media;
-    Introduction: Attribute.RichText;
-    ContentArea: Attribute.DynamicZone<["blocks.text-block"]>;
+    Introduction: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        minLength: 50;
+        maxLength: 250;
+      }>;
+    ContentArea: Attribute.DynamicZone<
+      [
+        "blocks.text-block",
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block"
+      ]
+    >;
+    Tags: Attribute.Relation<
+      "api::article-page.article-page",
+      "manyToMany",
+      "api::tag.tag"
+    >;
+    Category: Attribute.Relation<
+      "api::article-page.article-page",
+      "manyToOne",
+      "api::category.category"
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -942,6 +1000,7 @@ export interface ApiBlogBlog extends Schema.SingleType {
     singularName: "blog";
     pluralName: "blogs";
     displayName: "Blog";
+    description: "";
   };
   options: {
     draftAndPublish: true;
@@ -955,6 +1014,20 @@ export interface ApiBlogBlog extends Schema.SingleType {
     Title: Attribute.String &
       Attribute.Required &
       Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ContentArea: Attribute.DynamicZone<
+      [
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block",
+        "blocks.text-block"
+      ]
+    > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1002,8 +1075,36 @@ export interface ApiBlogPageBlogPage extends Schema.CollectionType {
         };
       }>;
     MainImage: Attribute.Media;
-    Introduction: Attribute.RichText;
-    ContentArea: Attribute.DynamicZone<["blocks.text-block"]>;
+    Introduction: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        minLength: 50;
+        maxLength: 250;
+      }>;
+    ContentArea: Attribute.DynamicZone<
+      [
+        "blocks.text-block",
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block"
+      ]
+    >;
+    Tags: Attribute.Relation<
+      "api::blog-page.blog-page",
+      "manyToMany",
+      "api::tag.tag"
+    >;
+    Category: Attribute.Relation<
+      "api::blog-page.blog-page",
+      "manyToOne",
+      "api::category.category"
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1023,6 +1124,78 @@ export interface ApiBlogPageBlogPage extends Schema.CollectionType {
       "api::blog-page.blog-page",
       "oneToMany",
       "api::blog-page.blog-page"
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: "categories";
+  info: {
+    singularName: "category";
+    pluralName: "categories";
+    displayName: "Category";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Color: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<"plugin::color-picker.color"> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    blog_pages: Attribute.Relation<
+      "api::category.category",
+      "oneToMany",
+      "api::blog-page.blog-page"
+    >;
+    article_pages: Attribute.Relation<
+      "api::category.category",
+      "oneToMany",
+      "api::article-page.article-page"
+    >;
+    project_pages: Attribute.Relation<
+      "api::category.category",
+      "oneToMany",
+      "api::project-page.project-page"
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      "api::category.category",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      "api::category.category",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      "api::category.category",
+      "oneToMany",
+      "api::category.category"
     >;
     locale: Attribute.String;
   };
@@ -1054,7 +1227,13 @@ export interface ApiHomecareHomecare extends Schema.SingleType {
         };
       }>;
     ContentArea: Attribute.DynamicZone<
-      ["blocks.image-block", "blocks.text-block"]
+      [
+        "blocks.image-block",
+        "blocks.text-block",
+        "blocks.header-block",
+        "blocks.separator-block",
+        "blocks.tab-block"
+      ]
     > &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1091,6 +1270,7 @@ export interface ApiProjectProject extends Schema.SingleType {
     singularName: "project";
     pluralName: "projects";
     displayName: "Project";
+    description: "";
   };
   options: {
     draftAndPublish: true;
@@ -1104,6 +1284,20 @@ export interface ApiProjectProject extends Schema.SingleType {
     Title: Attribute.String &
       Attribute.Required &
       Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ContentArea: Attribute.DynamicZone<
+      [
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block",
+        "blocks.text-block"
+      ]
+    > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1139,6 +1333,7 @@ export interface ApiProjectPageProjectPage extends Schema.CollectionType {
     singularName: "project-page";
     pluralName: "project-pages";
     displayName: "Project Page";
+    description: "";
   };
   options: {
     draftAndPublish: true;
@@ -1158,8 +1353,36 @@ export interface ApiProjectPageProjectPage extends Schema.CollectionType {
         };
       }>;
     MainImage: Attribute.Media;
-    Introduction: Attribute.RichText;
-    ContentArea: Attribute.DynamicZone<["blocks.text-block"]>;
+    Introduction: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.SetMinMaxLength<{
+        minLength: 50;
+        maxLength: 250;
+      }>;
+    ContentArea: Attribute.DynamicZone<
+      [
+        "blocks.text-block",
+        "blocks.header-block",
+        "blocks.image-block",
+        "blocks.separator-block",
+        "blocks.tab-block"
+      ]
+    >;
+    Tags: Attribute.Relation<
+      "api::project-page.project-page",
+      "manyToMany",
+      "api::tag.tag"
+    >;
+    Category: Attribute.Relation<
+      "api::project-page.project-page",
+      "manyToOne",
+      "api::category.category"
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1247,6 +1470,62 @@ export interface ApiRenovationRenovation extends Schema.SingleType {
   };
 }
 
+export interface ApiTagTag extends Schema.CollectionType {
+  collectionName: "tags";
+  info: {
+    singularName: "tag";
+    pluralName: "tags";
+    displayName: "Tag";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    blog_pages: Attribute.Relation<
+      "api::tag.tag",
+      "manyToMany",
+      "api::blog-page.blog-page"
+    >;
+    project_pages: Attribute.Relation<
+      "api::tag.tag",
+      "manyToMany",
+      "api::project-page.project-page"
+    >;
+    article_pages: Attribute.Relation<
+      "api::tag.tag",
+      "manyToMany",
+      "api::article-page.article-page"
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<"api::tag.tag", "oneToOne", "admin::user"> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<"api::tag.tag", "oneToOne", "admin::user"> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      "api::tag.tag",
+      "oneToMany",
+      "api::tag.tag"
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module "@strapi/types" {
   export module Shared {
     export interface ContentTypes {
@@ -1270,10 +1549,12 @@ declare module "@strapi/types" {
       "api::article-page.article-page": ApiArticlePageArticlePage;
       "api::blog.blog": ApiBlogBlog;
       "api::blog-page.blog-page": ApiBlogPageBlogPage;
+      "api::category.category": ApiCategoryCategory;
       "api::homecare.homecare": ApiHomecareHomecare;
       "api::project.project": ApiProjectProject;
       "api::project-page.project-page": ApiProjectPageProjectPage;
       "api::renovation.renovation": ApiRenovationRenovation;
+      "api::tag.tag": ApiTagTag;
     }
   }
 }
