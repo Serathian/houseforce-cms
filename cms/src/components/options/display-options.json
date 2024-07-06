@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_options_display_options",
+  "info": {
+    "displayName": "Display Options",
+    "icon": "expand",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "BlockSize": {
+      "type": "enumeration",
+      "enum": [
+        "Full",
+        "Narrow",
+        "Half",
+        "One Third",
+        "Two Thirds"
+      ],
+      "required": true,
+      "default": "Full"
+    },
+    "BorderRadius": {
+      "type": "enumeration",
+      "enum": [
+        "Full",
+        "Medium",
+        "Small",
+        "None"
+      ],
+      "default": "None",
+      "required": true
+    },
+    "Border": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    }
+  }
+}

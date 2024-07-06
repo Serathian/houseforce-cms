@@ -1,4 +1,18 @@
-export enum DisplayOption {
+export interface DisplayOption {
+  BlockSize: SizeOption;
+  BorderRadius: RadiusOption;
+  Border: boolean;
+}
+
+export const getDisplayOption = (displayOption: DisplayOption) => {
+  return (
+    getGridCss(displayOption.BlockSize) +
+    getRadiusCss(displayOption.BorderRadius) +
+    getBorderCss(displayOption.Border)
+  );
+};
+
+export enum SizeOption {
   Full = "Full",
   Narrow = "Narrow",
   Half = "Half",
@@ -6,38 +20,45 @@ export enum DisplayOption {
   TwoThirds = "Two Thirds",
 }
 
-export const getDisplayOption = (displayOption: DisplayOption) => {
-  switch (displayOption) {
-    case DisplayOption.Full:
-      return "col-span-12";
-    case DisplayOption.Half:
-      return "col-span-12 md:col-span-6";
-    case DisplayOption.Narrow:
-      return "col-span-12 md:col-span-10 md:col-start-2";
-    case DisplayOption.OneThird:
-      return "col-span-12 md:col-span-4";
-    case DisplayOption.TwoThirds:
-      return "col-span-12 md:col-span-8";
+const getGridCss = (blockSize: SizeOption) => {
+  switch (blockSize) {
+    case SizeOption.Full:
+      return "col-span-12 ";
+    case SizeOption.Half:
+      return "col-span-12 md:col-span-6 ";
+    case SizeOption.Narrow:
+      return "col-span-12 md:col-span-10 md:col-start-2 ";
+    case SizeOption.OneThird:
+      return "col-span-12 md:col-span-4 ";
+    case SizeOption.TwoThirds:
+      return "col-span-12 md:col-span-8 ";
     default:
-      return "no-ds";
+      return "no-ds ";
   }
 };
 
-export enum ImageStyle {
-  Square = "Square",
-  Rounded = "Rounded",
-  Circle = "Circle",
+export enum RadiusOption {
+  Full = "Full",
+  Medium = "Medium",
+  Small = "Small",
+  None = "None",
 }
 
-export const getImageStyle = (imageStyle: ImageStyle) => {
-  switch (imageStyle) {
-    case ImageStyle.Circle:
-      return "rounded-full";
-    case ImageStyle.Rounded:
-      return "rounded-xl";
-    case ImageStyle.Square:
+const getRadiusCss = (radiusOption: RadiusOption) => {
+  switch (radiusOption) {
+    case RadiusOption.Full:
+      return "rounded-full ";
+    case RadiusOption.Medium:
+      return "rounded-xl ";
+    case RadiusOption.Small:
+      return "rounded-md ";
+    case RadiusOption.None:
       return "";
     default:
-      return "no-ds";
+      return "no-ro ";
   }
+};
+
+const getBorderCss = (hasBorder: boolean) => {
+  return hasBorder ? "border " : "";
 };

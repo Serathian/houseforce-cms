@@ -1,15 +1,16 @@
 {
-  "collectionName": "components_blocks_text_blocks",
+  "collectionName": "components_blocks_tab_blocks",
   "info": {
-    "displayName": "Text Block",
-    "icon": "filter",
+    "displayName": "Tab Block",
+    "icon": "bulletList",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "Text": {
-      "type": "blocks",
-      "required": true
+    "Tabs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.tab"
     },
     "DisplayOption": {
       "type": "component",

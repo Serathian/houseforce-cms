@@ -1,14 +1,14 @@
 {
-  "collectionName": "components_blocks_text_blocks",
+  "collectionName": "components_blocks_header_blocks",
   "info": {
-    "displayName": "Text Block",
-    "icon": "filter",
+    "displayName": "Header Block",
+    "icon": "bold",
     "description": ""
   },
   "options": {},
   "attributes": {
     "Text": {
-      "type": "blocks",
+      "type": "string",
       "required": true
     },
     "DisplayOption": {

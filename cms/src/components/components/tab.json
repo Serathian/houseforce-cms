@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_components_tabs",
+  "info": {
+    "displayName": "Tab",
+    "icon": "file",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "TabTitle": {
+      "type": "string",
+      "required": true
+    },
+    "ContentTitle": {
+      "type": "string",
+      "required": true
+    },
+    "Content": {
+      "type": "text",
+      "required": true
+    },
+    "Icon": {
+      "type": "enumeration",
+      "enum": [
+        "Heart",
+        "Diamond",
+        "HandShake"
+      ],
+      "required": true,
+      "default": "Heart"
+    }
+  }
+}

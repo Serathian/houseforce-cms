@@ -1,15 +1,14 @@
 {
-  "collectionName": "components_blocks_text_blocks",
+  "collectionName": "components_blocks_separator_blocks",
   "info": {
-    "displayName": "Text Block",
-    "icon": "filter",
+    "displayName": "Separator Block",
+    "icon": "oneToOne",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "Text": {
-      "type": "blocks",
-      "required": true
+    "Title": {
+      "type": "string"
     },
     "DisplayOption": {
       "type": "component",

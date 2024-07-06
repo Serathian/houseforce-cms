@@ -11,19 +11,15 @@
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "DisplayOption": {
-      "type": "enumeration",
-      "enum": ["Full", "Narrow", "Half", "One Third", "Two Thirds"],
-      "default": "Full",
+      "type": "component",
+      "repeatable": false,
+      "component": "options.display-options",
       "required": true
-    },
-    "Style": {
-      "type": "enumeration",
-      "enum": ["Square", "Rounded", "Circle"],
-      "required": true,
-      "default": "Square"
     }
   }
 }

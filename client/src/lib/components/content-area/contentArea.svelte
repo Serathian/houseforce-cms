@@ -1,22 +1,31 @@
 <script lang="ts">
-	import { getDisplayOption, getImageStyle } from '@/utils/styleHelper';
-	import RichTextBlock from '../blocks/RichTextBlock.svelte';
-	import StrapiImageBlock from '../blocks/StrapiImageBlock.svelte';
+  import RichTextBlock from "../blocks/RichTextBlock.svelte";
+  import ImageBlock from "../blocks/ImageBlock.svelte";
+  import SeperatorBlock from "../blocks/SeperatorBlock.svelte";
+  import HeaderBlock from "../blocks/HeaderBlock.svelte";
+  import TabsBlock from "../blocks/TabsBlock.svelte";
+  import AccordionBlock from "../blocks/AccordionBlock.svelte";
 
-	// TODO: type this
-	//item.Media.data is an array?
-	export let data;
+  // TODO: type this
+  //item.Media.data is an array?
+  export let data;
+  console.log(data);
 </script>
 
 <div class="grid grid-cols-12 gap-6">
-	{#each data as item}
-		{#if item.__component === 'blocks.text-block'}
-			<RichTextBlock data={item.Text} cssClass={getDisplayOption(item.DisplayOption)} />
-		{:else if item.__component === 'blocks.image-block'}
-			<StrapiImageBlock
-				imageData={item.Media.data[0]}
-				cssClass={getDisplayOption(item.DisplayOption) + ' ' + getImageStyle(item.Style)}
-			/>
-		{/if}
-	{/each}
+  {#each data as block}
+    {#if block.__component === "blocks.text-block"}
+      <RichTextBlock {block} />
+    {:else if block.__component === "blocks.image-block"}
+      <ImageBlock {block} />
+    {:else if block.__component === "blocks.separator-block"}
+      <SeperatorBlock {block} />
+    {:else if block.__component === "blocks.header-block"}
+      <HeaderBlock {block} />
+    {:else if block.__component === "blocks.tab-block"}
+      <TabsBlock {block} />
+    {:else if block.__component === "blocks.accordion-block"}
+      <AccordionBlock {block} />
+    {/if}
+  {/each}
 </div>

@@ -1210,7 +1210,13 @@ export interface ApiRenovationRenovation extends Schema.SingleType {
         };
       }>;
     ContentArea: Attribute.DynamicZone<
-      ["blocks.image-block", "blocks.text-block"]
+      [
+        "blocks.image-block",
+        "blocks.text-block",
+        "blocks.header-block",
+        "blocks.separator-block",
+        "blocks.tab-block"
+      ]
     > &
       Attribute.SetPluginOptions<{
         i18n: {
