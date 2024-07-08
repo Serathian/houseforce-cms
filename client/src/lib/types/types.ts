@@ -29,7 +29,7 @@ export interface Data<T> {
 
 // Own implemenation of Strapi mdia interface
 export interface ImageMediaData {
-    id: number;
+  id: number;
   attributes: {
     name: string;
     alternativeText: string;
@@ -72,4 +72,14 @@ export interface IFile {
   provider_metadata?: Record<string, unknown>;
   type?: string;
   mainHash?: string;
+}
+
+export interface Facet {
+  name: string;
+  id: number;
+  color: string | null;
+}
+
+export interface NumericKeyedObject {
+  [key: string]: number;
 }

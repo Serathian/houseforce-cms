@@ -3,7 +3,6 @@
   import { getDisplayOption } from "@/utils/styleHelper";
 
   export let block: any;
-  console.log(block);
 
   const baseCss = getDisplayOption(block.DisplayOption);
   const imageData = block.Media.data[0];

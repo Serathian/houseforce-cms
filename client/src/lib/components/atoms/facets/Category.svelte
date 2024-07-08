@@ -1,12 +1,21 @@
 <script lang="ts">
-  export let cssClass = "";
-  export let data;
+  import { facets, type Category } from "@/stores/facetStore";
 
-  const colour = data.attributes.Color;
-  console.log(colour);
+  export let categoryId: number;
+  export let cssClass: string;
+
+  let category: Category;
+
+  facets.subscribe((value) => {
+    category = value.Categories.find((c) => c.id === categoryId) ?? {
+      id: -1,
+      name: "not-found",
+      color: "#ffffff",
+    };
+  });
 </script>
 
 <span
-  style="background-color: {colour};"
-  class={cssClass + " text-white font-bold"}>{data.attributes.Name}</span
+  style="background-color: {category.color};"
+  class={cssClass + " text-white font-bold"}>{category.name}</span
 >

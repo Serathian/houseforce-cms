@@ -9,7 +9,6 @@
   //item.Media.data is an array?
   export let data;
   export let cssClass = "";
-  console.log(data);
 </script>
 
 <div class={cssClass + " grid grid-cols-12 gap-6"}>

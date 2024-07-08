@@ -2,6 +2,8 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { cubicOut } from "svelte/easing";
 import type { TransitionConfig } from "svelte/transition";
+import type { Category, Tag } from "./stores/facetStore";
+import type { Facet, NumericKeyedObject } from "./types/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -59,4 +61,39 @@ export const flyAndScale = (
     },
     easing: cubicOut,
   };
+};
+
+export const tagsToFacets = (tagIds: NumericKeyedObject, tags: Tag[]) => {
+  const facetTags: Facet[] = Object.entries(tagIds).reduce(
+    (acc: Facet[], obj) => {
+      const tag = tags.find((tag) => tag.id.toString() === obj[0]);
+      if (tag !== undefined) {
+        acc.push({ ...tag, color: null });
+      }
+      return acc;
+    },
+    [],
+  );
+
+  return facetTags;
+};
+
+export const categoriesToFacets = (
+  categoryIds: NumericKeyedObject,
+  categories: Category[],
+) => {
+  const facetTags: Facet[] = Object.entries(categoryIds).reduce(
+    (acc: Facet[], obj) => {
+      const category = categories.find(
+        (category) => category.id.toString() === obj[0],
+      );
+      if (category !== undefined) {
+        acc.push({ ...category });
+      }
+      return acc;
+    },
+    [],
+  );
+
+  return facetTags;
 };
