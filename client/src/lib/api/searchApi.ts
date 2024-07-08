@@ -1,6 +1,7 @@
 import { env } from "$env/dynamic/public";
+import { Pages } from "@/types/types";
 
-const { PUBLIC_SEARCH_BASE_URL } = env;
+const { PUBLIC_SEARCH_BASE_URL, PUBLIC_SEARCH_KEY } = env;
 
 interface MeilisearchParameters {
   q?: string;
@@ -8,7 +9,7 @@ interface MeilisearchParameters {
   limit?: number;
   hitsPerPage?: number;
   page?: number;
-  filter?: string;
+  filter?: string | string[][];
   facets?: string[];
   attributesToRetrieve?: string[];
   attributesToCrop?: string[];
@@ -25,7 +26,7 @@ interface MeilisearchParameters {
   vector?: number[];
 }
 
-interface MeilisearchResult<T> {
+export interface MeilisearchResult<T> {
   hits: T[];
   offest: number;
   limit: number;
@@ -40,24 +41,65 @@ interface MeilisearchResult<T> {
   query: string;
 }
 
-export const Search = async (query: string, fetcher: typeof fetch = fetch) => {
-  const url = PUBLIC_SEARCH_BASE_URL + "/indexes/content/search";
+export interface SearchResult {
+  Title: string;
+  MainImage: Object;
+  Introduction: string;
+  Category: number;
+  Tags: number[];
+}
+
+export const Search = async (
+  page: Pages,
+  fetcher: typeof fetch = fetch,
+  query?: string,
+  categories?: number[],
+  tags?: number[],
+) => {
+  const url = PUBLIC_SEARCH_BASE_URL + `/indexes/${getIndex(page)}/search`;
+
+  const categoriesFilter =
+    categories?.map((category) => `Category = ${category}`) ?? [];
+  const tagsFilter = tags?.map((tag) => `Tags = ${tag}`) ?? [];
 
   const searchParams: MeilisearchParameters = {
     q: query,
+    filter: [categoriesFilter, tagsFilter],
+    facets: ["*"],
+    attributesToRetrieve: [
+      "Title",
+      "MainImage",
+      "Introduction",
+      "Category",
+      "Tags",
+    ],
   };
 
   const response = await fetcher(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${PUBLIC_SEARCH_KEY!}`,
     },
     body: JSON.stringify(searchParams),
   });
 
   if (!response.ok) {
-    throw new Error("Error in search");
+    throw new Error("Error in search", { cause: response });
   }
-  const result: MeilisearchResult<object> = await response.json();
+  const result: MeilisearchResult<SearchResult> = await response.json();
   return result;
+};
+
+const getIndex = (index: Pages) => {
+  switch (index) {
+    case Pages.Articles:
+      return "article-page";
+    case Pages.Blogs:
+      return "blog-page";
+    case Pages.Projects:
+      return "project-page";
+    default:
+      return "content";
+  }
 };
