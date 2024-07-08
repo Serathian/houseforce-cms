@@ -8,12 +8,42 @@ export default ({ env }) => ({
       ),
       "blog-page": {
         indexName: ["blog-page", "content"],
+        transformEntry({ entry }) {
+          return {
+            ...entry,
+            Tags: entry.Tags?.map((tag) => tag.id),
+            Category: entry.Category?.id,
+          };
+        },
+        settings: {
+          filterableAttributes: ["Category", "Tags"],
+        },
       },
       "project-page": {
         indexName: ["project-page", "content"],
+        transformEntry({ entry }) {
+          return {
+            ...entry,
+            Tags: entry.Tags?.map((tag) => tag.id),
+            Category: entry.Category?.id,
+          };
+        },
+        settings: {
+          filterableAttributes: ["Category", "Tags"],
+        },
       },
       "article-page": {
         indexName: ["article-page", "content"],
+        transformEntry({ entry }) {
+          return {
+            ...entry,
+            Tags: entry.Tags?.map((tag) => tag.id),
+            Category: entry.Category?.id,
+          };
+        },
+        settings: {
+          filterableAttributes: ["Category", "Tags"],
+        },
       },
     },
   },
