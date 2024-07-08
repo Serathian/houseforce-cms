@@ -9,37 +9,35 @@ import type { Common } from "@strapi/strapi";
 import qs from "qs";
 import { GetSingleType } from "./singleTypeApi";
 import { env } from "$env/dynamic/public";
+import { Search, type MeilisearchResult, type SearchResult } from "./searchApi";
 
 const { PUBLIC_CMS_BASE_URL } = env;
 
-export const LoadCollectionType = async (domain: Pages) => {
+export const LoadCollectionType = async (
+  domain: Pages,
+  fetcher: typeof fetch = fetch,
+) => {
   let pageData: APIResponse<Common.UID.ContentType>;
-  let collectionData: APIResponseCollection<Common.UID.ContentType>;
+  let collectionData: MeilisearchResult<SearchResult>;
 
   switch (domain) {
     case Pages.Articles:
       pageData = await GetSingleType<APIResponse<"api::article.article">>(
         constants.articles.cmsEndpoint,
       );
-      collectionData = await GetCollectionType<
-        APIResponseCollection<"api::article-page.article-page">
-      >(constants.articles.collectionEnpoint);
+      collectionData = await Search(Pages.Articles, fetcher);
       break;
     case Pages.Blogs:
       pageData = await GetSingleType<APIResponse<"api::blog.blog">>(
         constants.blogs.cmsEndpoint,
       );
-      collectionData = await GetCollectionType<
-        APIResponseCollection<"api::blog-page.blog-page">
-      >(constants.blogs.collectionEnpoint);
+      collectionData = await Search(Pages.Blogs, fetcher);
       break;
     case Pages.Projects:
       pageData = await GetSingleType<APIResponse<"api::project.project">>(
         constants.projects.cmsEndpoint,
       );
-      collectionData = await GetCollectionType<
-        APIResponseCollection<"api::project-page.project-page">
-      >(constants.projects.collectionEnpoint);
+      collectionData = await Search(Pages.Projects, fetcher);
       break;
     case (Pages.Homecare, Pages.Renovation, Pages.AboutUs):
       throw new Error("something went wrongs");
