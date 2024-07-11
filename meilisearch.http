@@ -1,0 +1,46 @@
+GET http://localhost:7700/keys
+Authorization: Bearer CSoHrJ1ALmEa1U3fZ6TmgHb3CXqhcAeAfZHXLsqquHQ
+
+###
+
+GET http://localhost:7700/indexes/content/search?facets=Category,Tags
+Authorization: Bearer dbacedc0f4a17f28df91867ef367f8d3f16b68280e831ef3c3551d90ce383cf8
+
+###
+
+GET http://localhost:7700/indexes/content/settings
+Authorization: Bearer CSoHrJ1ALmEa1U3fZ6TmgHb3CXqhcAeAfZHXLsqquHQ
+
+###
+
+PATCH http://localhost:7700/indexes/blog-page/settings
+Authorization: Bearer CSoHrJ1ALmEa1U3fZ6TmgHb3CXqhcAeAfZHXLsqquHQ
+Content-Type: application/json
+
+{
+    "filterableAttributes": ["Category", "Tags"]
+}
+
+###
+
+DELETE http://localhost:7700/indexes/content
+Authorization: Bearer CSoHrJ1ALmEa1U3fZ6TmgHb3CXqhcAeAfZHXLsqquHQ
+
+###
+
+POST http://localhost:7700/indexes/blog-page/search
+Authorization: Bearer dbacedc0f4a17f28df91867ef367f8d3f16b68280e831ef3c3551d90ce383cf8
+Content-Type: application/json
+
+{
+    "q": "",
+    "filter": [[], []],
+    "facets": ["*"],
+    "attributesToRetrieve": [
+      "Title",
+      "MainImage",
+      "Introduction",
+      "Category",
+      "Tags"
+    ]
+  }
