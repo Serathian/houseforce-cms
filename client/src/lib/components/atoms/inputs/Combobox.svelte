@@ -10,7 +10,8 @@
 
   export let facets: Facet[];
   export let placeholder: string = "Select an option.";
-
+  export let selected: number;
+  
   let open = false;
   let value = "";
 
