@@ -1,24 +1,64 @@
 <script lang="ts">
   import CardGrid from "@/components/collection/CardGrid.svelte";
-  import ProjectCard from "@/components/collection/ProjectCard.svelte";
-  import ContentArea from "@/components/content-area/ContentArea.svelte";
-  import type { APIResponse, APIResponseCollection } from "@/types/strapi";
-  import { Pages } from "@/types/types.js";
+  import type { APIResponse } from "@/types/strapi";
+  import { Pages, type NumericKeyedObject } from "@/types/types.js";
   import { updateCurrentTheme } from "@/utils/domainHelper";
+  import ContentArea from "@/components/content-area/ContentArea.svelte";
+  import {
+    Search,
+    type MeilisearchResult,
+    type SearchResult,
+  } from "@/api/searchApi";
+  import { facets } from "@/stores/facetStore";
+  import { writable } from "svelte/store";
+  import { onMount } from "svelte";
+  import ProjectCard from "@/components/collection/ProjectCard.svelte";
+  import CollectionSearch from "@/components/collection/CollectionSearch.svelte";
 
   // Props
   export let data: {
     pageData: APIResponse<"api::project.project">;
-    collectionData: APIResponseCollection<"api::project-page.project-page">;
+    collectionData: MeilisearchResult<SearchResult>;
   };
 
   // Data
-  let pageData = data.pageData.data;
-  let contentArea = pageData.attributes.ContentArea;
-  let collection = data.collectionData.data;
+  const pageData = data.pageData?.data;
+  const contentArea = pageData.attributes?.ContentArea;
+  $: collection = data.collectionData?.hits;
+  const tags: NumericKeyedObject = data.collectionData.facetDistribution.Tags;
+  const categories: NumericKeyedObject =
+    data.collectionData.facetDistribution.Category;
 
-  updateCurrentTheme(Pages.Projects);
+  const searchStore = writable<{
+    q: string;
+    tags: number[];
+    category: number;
+  }>({ q: "", tags: [], category: -1 });
+
+  let isMounted = false;
+
+  onMount(() => {
+    isMounted = true;
+  });
+
+  searchStore.subscribe(async (value) => {
+    if (isMounted) {
+      const result = await Search(
+        Pages.Blogs,
+        fetch,
+        value.q,
+        value.category,
+        value.tags,
+      );
+      collection = result.hits;
+    }
+  });
+
+  updateCurrentTheme(Pages.Blogs);
 </script>
 
-<ContentArea data={contentArea} />
-<CardGrid {collection} component={ProjectCard} />
+<div class="grid grid-cols-5 gap-y-8">
+  <ContentArea data={contentArea} cssClass="col-span-5" />
+  <CollectionSearch {searchStore} {categories} {tags} {facets} />
+  <CardGrid {collection} component={ProjectCard} cssClass="col-span-5" />
+</div>

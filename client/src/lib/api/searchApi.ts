@@ -41,37 +41,43 @@ export interface MeilisearchResult<T> {
   query: string;
 }
 
+// TODO - map the results to the interface and refactor to camelCase
 export interface SearchResult {
+  id: number;
   Title: string;
   MainImage: Object;
   Introduction: string;
   Category: number;
   Tags: number[];
+  Author: number;
 }
 
 export const Search = async (
   page: Pages,
   fetcher: typeof fetch = fetch,
   query?: string,
-  categories?: number[],
+  category?: number,
   tags?: number[],
 ) => {
   const url = PUBLIC_SEARCH_BASE_URL + `/indexes/${getIndex(page)}/search`;
 
   const categoriesFilter =
-    categories?.map((category) => `Category = ${category}`) ?? [];
-  const tagsFilter = tags?.map((tag) => `Tags = ${tag}`) ?? [];
+    category && category > -1 ? `Category = ${category}` : "";
+  const tagsFilter =
+    tags?.map((tag) => (tag > -1 ? `Tags = ${tag}` : "")) ?? [];
 
   const searchParams: MeilisearchParameters = {
     q: query,
-    filter: [categoriesFilter, tagsFilter],
+    filter: [[categoriesFilter], tagsFilter],
     facets: ["*"],
     attributesToRetrieve: [
+      "id",
       "Title",
       "MainImage",
       "Introduction",
       "Category",
       "Tags",
+      "Author",
     ],
   };
 

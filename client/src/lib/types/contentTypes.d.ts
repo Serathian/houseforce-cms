@@ -970,6 +970,11 @@ export interface ApiArticlePageArticlePage extends Schema.CollectionType {
       "manyToOne",
       "api::category.category"
     >;
+    Author: Attribute.Relation<
+      "api::article-page.article-page",
+      "manyToOne",
+      "api::author.author"
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -989,6 +994,78 @@ export interface ApiArticlePageArticlePage extends Schema.CollectionType {
       "api::article-page.article-page",
       "oneToMany",
       "api::article-page.article-page"
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiAuthorAuthor extends Schema.CollectionType {
+  collectionName: "authors";
+  info: {
+    singularName: "author";
+    pluralName: "authors";
+    displayName: "Author";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Name: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Articles: Attribute.Relation<
+      "api::author.author",
+      "oneToMany",
+      "api::article-page.article-page"
+    >;
+    Blogs: Attribute.Relation<
+      "api::author.author",
+      "oneToMany",
+      "api::blog-page.blog-page"
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      "api::author.author",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      "api::author.author",
+      "oneToOne",
+      "admin::user"
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      "api::author.author",
+      "oneToMany",
+      "api::author.author"
     >;
     locale: Attribute.String;
   };
@@ -1104,6 +1181,11 @@ export interface ApiBlogPageBlogPage extends Schema.CollectionType {
       "api::blog-page.blog-page",
       "manyToOne",
       "api::category.category"
+    >;
+    Author: Attribute.Relation<
+      "api::blog-page.blog-page",
+      "manyToOne",
+      "api::author.author"
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1547,6 +1629,7 @@ declare module "@strapi/types" {
       "api::about-us.about-us": ApiAboutUsAboutUs;
       "api::article.article": ApiArticleArticle;
       "api::article-page.article-page": ApiArticlePageArticlePage;
+      "api::author.author": ApiAuthorAuthor;
       "api::blog.blog": ApiBlogBlog;
       "api::blog-page.blog-page": ApiBlogPageBlogPage;
       "api::category.category": ApiCategoryCategory;

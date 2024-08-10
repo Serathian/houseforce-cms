@@ -29,9 +29,9 @@ const getGridCss = (blockSize: SizeOption) => {
     case SizeOption.Narrow:
       return "col-span-12 md:col-span-10 md:col-start-2 ";
     case SizeOption.OneThird:
-      return "col-span-12 md:col-span-4 ";
+      return "col-span-12 md:col-span-6 lg:col-span-4";
     case SizeOption.TwoThirds:
-      return "col-span-12 md:col-span-8 ";
+      return "col-span-12 md:col-span-4 ";
     default:
       return "no-ds ";
   }

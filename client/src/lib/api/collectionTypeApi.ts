@@ -73,13 +73,17 @@ export const GetCollectionType = async <
 export const LoadCollectionItem = async (domain: Pages, slug: string) => {
   switch (domain) {
     case Pages.Articles:
-      break;
+      return await GetCollectionItem<
+        APIResponseData<"api::article-page.article-page">
+      >(constants.articles.collectionEnpoint + "/" + slug);
     case Pages.Blogs:
       return await GetCollectionItem<
         APIResponseData<"api::blog-page.blog-page">
       >(constants.blogs.collectionEnpoint + "/" + slug);
     case Pages.Projects:
-      break;
+      return await GetCollectionItem<
+        APIResponseData<"api::project-page.project-page">
+      >(constants.projects.collectionEnpoint + "/" + slug);
     default:
       throw new Error("something went wrongs");
   }
@@ -90,7 +94,10 @@ export const GetCollectionItem = async <
 >(
   path: string,
 ) => {
-  const query = qs.stringify({ populate: "*" });
+  const query = qs.stringify({
+    "populate[0]": "MainImage",
+    "populate[1]": "ContentArea.DisplayOption",
+  });
 
   async function getData() {
     const res = await fetch(PUBLIC_CMS_BASE_URL + path + "?" + query);
@@ -99,7 +106,6 @@ export const GetCollectionItem = async <
       // This will activate the closest `error.js` Error Boundary
       throw new Error("Failed to fetch data");
     }
-
     return res.json();
   }
 

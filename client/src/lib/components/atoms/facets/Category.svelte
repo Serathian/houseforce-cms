@@ -4,14 +4,16 @@
   export let categoryId: number;
   export let cssClass: string;
 
-  let category: Category;
+  let categories: Category[];
+
+  $: category = categories.find((c) => c.id === categoryId) ?? {
+    id: -1,
+    name: "not-found",
+    color: "#000000",
+  };
 
   facets.subscribe((value) => {
-    category = value.Categories.find((c) => c.id === categoryId) ?? {
-      id: -1,
-      name: "not-found",
-      color: "#ffffff",
-    };
+    categories = value.Categories;
   });
 </script>
 

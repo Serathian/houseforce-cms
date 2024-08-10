@@ -13,10 +13,11 @@ export default ({ env }) => ({
             ...entry,
             Tags: entry.Tags?.map((tag) => tag.id),
             Category: entry.Category?.id,
+            Author: entry.Author?.id,
           };
         },
         settings: {
-          filterableAttributes: ["Category", "Tags"],
+          filterableAttributes: ["Category", "Tags", "Author"],
         },
       },
       "project-page": {
@@ -39,10 +40,11 @@ export default ({ env }) => ({
             ...entry,
             Tags: entry.Tags?.map((tag) => tag.id),
             Category: entry.Category?.id,
+            Author: entry.Author?.id,
           };
         },
         settings: {
-          filterableAttributes: ["Category", "Tags"],
+          filterableAttributes: ["Category", "Tags", "Author"],
         },
       },
     },
