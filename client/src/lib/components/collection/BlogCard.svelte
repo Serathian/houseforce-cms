@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { ApiBlogPageBlogPage } from "@/types/contentTypes";
-  import { getImgAlt, getImgUrl, getImgUrlString } from "@/utils/mediaHelpers";
+  import { getImgUrlString } from "@/utils/mediaHelpers";
   import type { Data, ImageMediaData } from "@/types/types";
   import {
     getDisplayOption,
@@ -12,11 +11,12 @@
   import type { SearchResult } from "@/api/searchApi";
 
   export let cardData: SearchResult;
-  const imageData = cardData.MainImage as unknown as Data<ImageMediaData>;
+  const slugUrl = `/blogs/${cardData.id}`;
+  $: imageData = cardData.MainImage as unknown as Data<ImageMediaData>;
 
   // TODO: type this out
-  const tags = cardData.Tags;
-  const category = cardData.Category;
+  $: tags = cardData.Tags;
+  $: category = cardData.Category;
 </script>
 
 <div
@@ -31,7 +31,7 @@
     categoryId={category}
     cssClass="absolute top-0 right-0 z-10 rounded-bl-sm px-3 py-1"
   />
-  <a href="/">
+  <a href={slugUrl}>
     {#if imageData}
       <div class="relative">
         <img

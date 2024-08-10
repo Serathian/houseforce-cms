@@ -10,11 +10,21 @@
 
   export let facets: Facet[];
   export let placeholder: string = "Select an option.";
+  export let selectedValues: number[];
 
   let open = false;
-  let value = "";
 
-  $: selectedValue = facets.find((f) => f.name === value)?.name ?? placeholder;
+  $: selectedValues = [];
+
+  $: selectedFacets = selectedValues.length
+    ? selectedValues.map((x) => facets.find((y) => y.id == x))
+    : [
+        {
+          name: placeholder,
+          id: -1,
+          color: null,
+        },
+      ];
 
   // We want to refocus the trigger button when the user selects
   // an item from the list so users can continue navigating the
@@ -24,6 +34,17 @@
     tick().then(() => {
       document.getElementById(triggerId)?.focus();
     });
+  }
+
+  function handleSelect(currentValue: string) {
+    const currentValueId = facets.find((x) => x.name == currentValue)?.id ?? -1;
+    const isSelected = selectedValues.includes(currentValueId);
+
+    if (isSelected) {
+      selectedValues = selectedValues.filter((x) => x != currentValueId);
+    } else {
+      selectedValues = [...selectedValues, currentValueId];
+    }
   }
 </script>
 
@@ -36,7 +57,9 @@
       aria-expanded={open}
       class="w-[200px] justify-between"
     >
-      {selectedValue}
+      {selectedFacets.length > 1
+        ? "Filtering by selected."
+        : selectedFacets.map((x) => `${x?.name}`)}
       <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
     </Button>
   </Popover.Trigger>
@@ -49,14 +72,14 @@
           <Command.Item
             value={facet.name}
             onSelect={(currentValue) => {
-              value = currentValue;
+              handleSelect(currentValue);
               closeAndFocusTrigger(ids.trigger);
             }}
           >
             <Check
               class={cn(
                 "mr-2 h-4 w-4",
-                value !== facet.name && "text-transparent",
+                !selectedValues.includes(facet.id) && "text-transparent",
               )}
             />
             {facet.name}
